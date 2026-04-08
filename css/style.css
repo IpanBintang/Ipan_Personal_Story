@@ -270,3 +270,96 @@ body {
     color: #BA8530;
     font-size: 0.9em;
 }
+
+/* ======================================================
+   ABOUT PAGE — additional styles
+   ====================================================== */
+
+/* PAGE TITLE */
+.page-title {
+    font-size: 3em;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    line-height: 1;
+    margin: 28px 0 4px 0;
+}
+
+.title-gold  { color: #BA8530; }
+.title-cream { color: #F5EDDC; }
+
+.page-subtitle {
+    color: #5C7F71;
+    font-size: 0.75em;
+    font-weight: 800;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    margin: 0 0 4px 0;
+}
+
+/* INFO TABLE */
+.info-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 14px 0;
+    font-size: 0.9em;
+}
+
+.info-label {
+    width: 35%;
+    padding: 10px 14px;
+    font-weight: 800;
+    color: #BA8530;
+    text-transform: uppercase;
+    font-size: 0.8em;
+    letter-spacing: 1px;
+    border-bottom: 1px solid #333;
+}
+
+.info-value {
+    padding: 10px 14px;
+    border-bottom: 1px solid #333;
+}
+
+.row-alt .info-label,
+.row-alt .info-value {
+    background-color: rgba(245, 237, 220, 0.06);
+}
+
+/* TWO COLUMN TABLE */
+.two-col-table {
+    width: 100%;
+}
+
+.hobby-block {
+    width: 50%;
+    border-left: 5px solid #5C7F71;
+    padding: 14px 16px;
+    background-color: rgba(92, 127, 113, 0.05);
+    vertical-align: top;
+}
+
+.hobby-block p {
+    color: #F5EDDC;
+    font-size: 0.88em;
+    line-height: 1.6;
+    margin: 0;
+}
+
+.block-title-green {
+    color: #5C7F71;
+    font-size: 0.85em;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin: 0 0 6px 0;
+}
+
+/* CARD GREEN */
+.card-green {
+    border: 2px solid #5C7F71;
+    padding: 20px;
+    margin: 14px 0;
+    background-color:'s the `about.xhtml` code:
+
+```xhtml
