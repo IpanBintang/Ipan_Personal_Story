@@ -85,7 +85,7 @@ body {
     margin: 20px auto 0;
     max-width: 100%;
     height: auto;
-    border: 2px solid #BA8530;  /* Bonus: matches your retro theme */
+    border: 5px solid #BA8530;  /* Bonus: matches your retro theme */
     box-shadow: 0 4px 8px rgba(0,0,0,0.3);  /* Extra retro depth */
 }
 #footer {
