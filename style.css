@@ -1,39 +1,93 @@
+/* Lonetrail Retro Style
+   Palette: #5C7F71 | #802520 | #BA8530 | #181818 | #F5EDDC | #B2653B
+*/
+
 body {
     font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
+    background-color: #181818;
+    color: #F5EDDC;
 }
 
 #container {
     width: 800px;
     margin: auto;
-    background-color: white;
+    background-color: #F5EDDC;
     padding: 10px;
+    border: 2px solid #BA8530;
 }
 
 #header {
-    background-color: #333;
-    color: white;
-    padding: 10px;
+    background-color: #181818;
+    color: #F5EDDC;
+    padding: 14px 16px;
+    border-bottom: 4px solid #BA8530;
+    text-transform: uppercase;
+    letter-spacing: 2px;
 }
 
 #nav {
     margin: 10px 0;
+    padding: 6px 0;
+    border-bottom: 2px solid #BA8530;
 }
 
 #nav a {
     text-decoration: none;
-    color: #333;
-    margin-right: 10px;
+    color: #181818;
+    margin-right: 0;
+    padding: 6px 14px;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    border-right: 1px solid #BA8530;
+    display: inline-block;
+}
+
+#nav a:last-child {
+    border-right: none;
+}
+
+#nav a:hover {
+    background-color: #181818;
+    color: #F5EDDC;
 }
 
 #content {
-    margin: 10px 0;
+    margin: 14px 0;
+    padding: 8px;
+    color: #181818;
+}
+
+#content h1,
+#content h2,
+#content h3 {
+    color: #802520;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-left: 4px solid #BA8530;
+    padding-left: 10px;
+}
+
+#content a {
+    color: #5C7F71;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+#content a:hover {
+    color: #B2653B;
+    text-decoration: underline;
 }
 
 #footer {
-    background-color: #333;
-    color: white;
+    background-color: #181818;
+    color: #F5EDDC;
     text-align: center;
-    padding: 5px;
+    padding: 10px 5px;
     margin-top: 10px;
+    border-top: 4px solid #5C7F71;
+    letter-spacing: 2px;
+    font-size: 12px;
+    text-transform: uppercase;
 }
