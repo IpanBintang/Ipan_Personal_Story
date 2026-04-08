@@ -82,9 +82,12 @@ body {
 
 .banner {
     display: block;
-    margin: 0 auto;
+    margin: 20px auto 0;
+    max-width: 100%;
+    height: auto;
+    border: 2px solid #BA8530;  /* Bonus: matches your retro theme */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3);  /* Extra retro depth */
 }
-
 #footer {
     background-color: #181818;
     color: #F5EDDC;
