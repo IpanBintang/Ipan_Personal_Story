@@ -1,30 +1,272 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-    <title>IPAN's PERSONAL WEBSITE</title>
-    <link rel="stylesheet" type="text/css" href="style.css" />
-</head>
-<body>
-    <div id="container">
-        <div id="header">
-            <h1>IPAN's PERSONAL WEBSITE</h1>
-        </div>
-        <div id="nav">
-            <a href="index.xhtml">Home</a> |
-            <a href="about.xhtml">About</a> |
-            <a href="contact.xhtml">Contact</a> |
-            <a href="testing.xhtml">Testing</a>
-        </div>
-        <div id="content">
-            <h2>Get to know me! I'm not interesting but my projects are!</h2>
-            <p>Not for everyone, but I hope you find it interesting. This picture down here is me by the way, just random ass picture for testing.</p>
-            <img src="images/banner.jpg" class="banner" width="400" height="200" />
-        </div>
-        <div id="footer">
-            <p>&copy; 2026 IPAN's PERSONAL WEBSITE</p>
-        </div>
-    </div>
-</body>
-</html>
+/* ======================================================
+   style.css — Lonetrail Retro Theme
+   Palette: #5C7F71 | #802520 | #BA8530 | #181818 | #F5EDDC | #B2653B
+   IML254 — Ipan's Personal Website
+   ====================================================== */
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #181818;
+    color: #F5EDDC;
+    margin: 0;
+    padding: 0;
+}
+
+/* STRIPE BAR */
+#stripe-bar {
+    height: 8px;
+    background-color: #5C7F71;
+    border-right: 70px solid #802520;
+    /* fallback — for full multicolor use background image trick */
+}
+
+/* HEADER */
+#header {
+    background-color: #181818;
+    border-bottom: 4px solid #BA8530;
+    padding: 12px 24px;
+    overflow: hidden;
+}
+
+#header-title {
+    font-size: 1.1em;
+    font-weight: 900;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: #F5EDDC;
+}
+
+#header-copy {
+    float: right;
+    color: #BA8530;
+    font-size: 0.7em;
+    font-weight: 800;
+    letter-spacing: 2px;
+}
+
+/* NAVIGATION */
+#nav {
+    background-color: #F5EDDC;
+    border-bottom: 2px solid #BA8530;
+    padding: 0;
+    margin: 0;
+}
+
+#nav a {
+    display: inline-block;
+    color: #181818;
+    text-decoration: none;
+    padding: 8px 20px;
+    font-size: 0.75em;
+    font-weight: 800;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    border-right: 1px solid #BA8530;
+}
+
+#nav a:hover, #nav a.active {
+    background-color: #181818;
+    color: #BA8530;
+}
+
+/* HERO */
+#hero {
+    background-color: #F5EDDC;
+    color: #181818;
+    padding: 40px 24px;
+    border-bottom: 4px solid #BA8530;
+}
+
+#hero-welcome {
+    color: #802520;
+    font-size: 0.75em;
+    font-weight: 900;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    margin: 0 0 10px 0;
+}
+
+#hero-name {
+    color: #181818;
+    font-size: 4em;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 6px;
+    line-height: 1;
+    margin: 0 0 12px 0;
+}
+
+#hero-sub {
+    color: #802520;
+    font-size: 1em;
+    font-weight: 800;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    margin: 0 0 16px 0;
+}
+
+.hero-divider {
+    border: none;
+    border-top: 2px solid #181818;
+    margin: 16px 0;
+}
+
+#hero-desc {
+    max-width: 560px;
+    line-height: 1.7;
+    font-size: 0.95em;
+    margin: 0 0 16px 0;
+}
+
+/* TAGS */
+.tag {
+    display: inline-block;
+    font-size: 0.75em;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 4px 12px;
+    margin-right: 6px;
+}
+
+.tag-red   { background-color: #802520; color: #F5EDDC; }
+.tag-gold  { background-color: #BA8530; color: #181818; }
+.tag-green { background-color: #5C7F71; color: #F5EDDC; }
+
+/* CONTENT */
+#content {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 28px 24px;
+}
+
+#content h2 {
+    color: #BA8530;
+    font-size: 1.1em;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    border-left: 5px solid #BA8530;
+    padding-left: 12px;
+    margin: 24px 0 14px 0;
+}
+
+.section-divider {
+    border: none;
+    border-top: 2px solid #BA8530;
+    margin: 20px 0;
+}
+
+/* STAT TABLE */
+#stat-table {
+    width: 100%;
+    margin: 0 0 16px 0;
+}
+
+.stat-box {
+    width: 50%;
+    border: 2px solid #BA8530;
+    text-align: center;
+    padding: 20px;
+}
+
+.stat-number {
+    color: #BA8530;
+    font-size: 2.2em;
+    font-weight: 900;
+    letter-spacing: 2px;
+}
+
+.stat-label {
+    color: #F5EDDC;
+    font-size: 0.7em;
+    font-weight: 800;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+}
+
+/* NAVIGATION CARDS TABLE */
+#nav-cards {
+    width: 100%;
+}
+
+.card {
+    width: 50%;
+    border: 2px solid #BA8530;
+    padding: 18px;
+    vertical-align: top;
+    background-color: rgba(245, 237, 220, 0.04);
+}
+
+.card-green {
+    width: 50%;
+    border: 2px solid #5C7F71;
+    padding: 18px;
+    vertical-align: top;
+    background-color: rgba(92, 127, 113, 0.08);
+}
+
+.card h3, .card-green h3 {
+    color: #802520;
+    font-size: 0.85em;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin: 0 0 8px 0;
+}
+
+.card h3 a {
+    color: #802520;
+    text-decoration: none;
+}
+
+.card h3 a:hover {
+    color: #BA8530;
+    text-decoration: underline;
+}
+
+.card p, .card-green p {
+    color: #F5EDDC;
+    font-size: 0.85em;
+    line-height: 1.6;
+    margin: 0;
+}
+
+/* QUOTE */
+#quote-table {
+    width: 100%;
+    margin: 8px 0;
+}
+
+#quote-bar {
+    width: 5px;
+    background-color: #802520;
+}
+
+#quote-text {
+    padding-left: 16px;
+    color: #BA8530;
+    font-size: 1em;
+    font-style: italic;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+/* FOOTER */
+#footer {
+    background-color: #181818;
+    border-top: 4px solid #5C7F71;
+    color: #F5EDDC;
+    text-align: center;
+    padding: 10px 24px;
+    font-size: 0.7em;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+}
+
+#footer p { margin: 4px 0; }
+
+#footer-sub {
+    color: #BA8530;
+    font-size: 0.9em;
+}
