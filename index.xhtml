@@ -1,272 +1,121 @@
-/* ======================================================
-   style.css — Lonetrail Retro Theme
-   Palette: #5C7F71 | #802520 | #BA8530 | #181818 | #F5EDDC | #B2653B
-   IML254 — Ipan's Personal Website
-   ====================================================== */
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 
-body {
-    font-family: Arial, sans-serif;
-    background-color: #181818;
-    color: #F5EDDC;
-    margin: 0;
-    padding: 0;
-}
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <meta name="author" content="Ipan" />
+  <meta name="description" content="Ipan's Personal Website - IML254 Individual Project" />
+  <meta name="keywords" content="Ipan, personal website, IML254, UiTM, student, Malaysia" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ipan | Home</title>
+  <link rel="stylesheet" type="text/css" href="css/style.css" />
+</head>
 
-/* STRIPE BAR */
-#stripe-bar {
-    height: 8px;
-    background-color: #5C7F71;
-    border-right: 70px solid #802520;
-    /* fallback — for full multicolor use background image trick */
-}
+<body>
 
-/* HEADER */
-#header {
-    background-color: #181818;
-    border-bottom: 4px solid #BA8530;
-    padding: 12px 24px;
-    overflow: hidden;
-}
+  <!-- STRIPE BAR TOP -->
+  <div id="stripe-bar"></div>
 
-#header-title {
-    font-size: 1.1em;
-    font-weight: 900;
-    letter-spacing: 4px;
-    text-transform: uppercase;
-    color: #F5EDDC;
-}
+  <!-- HEADER -->
+  <div id="header">
+    <span id="header-title">Ipan &mdash; Personal Website</span>
+    <span id="header-copy">&copy; 2026 IML254</span>
+  </div>
 
-#header-copy {
-    float: right;
-    color: #BA8530;
-    font-size: 0.7em;
-    font-weight: 800;
-    letter-spacing: 2px;
-}
+  <!-- NAVIGATION -->
+  <div id="nav">
+    <a href="index.xhtml" class="active">Home</a>
+    <a href="about.xhtml">About Me</a>
+    <a href="education.xhtml">Education</a>
+    <a href="hobbies.xhtml">Hobbies</a>
+  </div>
 
-/* NAVIGATION */
-#nav {
-    background-color: #F5EDDC;
-    border-bottom: 2px solid #BA8530;
-    padding: 0;
-    margin: 0;
-}
+  <!-- HERO SECTION -->
+  <div id="hero">
+    <p id="hero-welcome">Welcome to my personal space</p>
+    <h1 id="hero-name">IPAN</h1>
+    <p id="hero-sub">Student &middot; Creative &middot; Web Developer</p>
+    <hr class="hero-divider" />
+    <p id="hero-desc">
+      Hello! My name is <strong>Ipan</strong> &mdash; a passionate student exploring the world of
+      web content development. This is my personal website created as part of the
+      <strong>IML254</strong> Individual Project.
+    </p>
+    <p>
+      <span class="tag tag-red">Malaysia</span>
+      <span class="tag tag-gold">Student</span>
+      <span class="tag tag-green">IML254</span>
+    </p>
+  </div>
 
-#nav a {
-    display: inline-block;
-    color: #181818;
-    text-decoration: none;
-    padding: 8px 20px;
-    font-size: 0.75em;
-    font-weight: 800;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    border-right: 1px solid #BA8530;
-}
+  <!-- MAIN CONTENT -->
+  <div id="content">
 
-#nav a:hover, #nav a.active {
-    background-color: #181818;
-    color: #BA8530;
-}
+    <!-- STAT BOXES -->
+    <table id="stat-table" cellpadding="0" cellspacing="0">
+      <tr>
+        <td class="stat-box">
+          <span class="stat-number">4</span><br />
+          <span class="stat-label">Pages</span>
+        </td>
+        <td class="stat-box">
+          <span class="stat-number">2026</span><br />
+          <span class="stat-label">Published</span>
+        </td>
+      </tr>
+    </table>
 
-/* HERO */
-#hero {
-    background-color: #F5EDDC;
-    color: #181818;
-    padding: 40px 24px;
-    border-bottom: 4px solid #BA8530;
-}
+    <!-- QUICK NAVIGATION -->
+    <h2>Quick Navigation</h2>
+    <hr class="section-divider" />
 
-#hero-welcome {
-    color: #802520;
-    font-size: 0.75em;
-    font-weight: 900;
-    letter-spacing: 5px;
-    text-transform: uppercase;
-    margin: 0 0 10px 0;
-}
+    <table id="nav-cards" cellpadding="0" cellspacing="12">
+      <tr>
+        <td class="card">
+          <h3><a href="about.xhtml">About Me &rarr;</a></h3>
+          <p>Learn about my personal background, family, and who I am as a person.</p>
+        </td>
+        <td class="card">
+          <h3><a href="education.xhtml">Education &rarr;</a></h3>
+          <p>My academic journey, institutions attended, and current studies.</p>
+        </td>
+      </tr>
+      <tr>
+        <td class="card">
+          <h3><a href="hobbies.xhtml">Hobbies &rarr;</a></h3>
+          <p>Things I love doing in my spare time &mdash; passions and personal interests.</p>
+        </td>
+        <td class="card-green">
+          <h3>This Site</h3>
+          <p>Built with XHTML &amp; CSS &middot; Styled in Lonetrail Retro aesthetic &middot; IML254 Project.</p>
+        </td>
+      </tr>
+    </table>
 
-#hero-name {
-    color: #181818;
-    font-size: 4em;
-    font-weight: 900;
-    text-transform: uppercase;
-    letter-spacing: 6px;
-    line-height: 1;
-    margin: 0 0 12px 0;
-}
+    <hr class="section-divider" />
 
-#hero-sub {
-    color: #802520;
-    font-size: 1em;
-    font-weight: 800;
-    letter-spacing: 4px;
-    text-transform: uppercase;
-    margin: 0 0 16px 0;
-}
+    <!-- QUOTE -->
+    <table id="quote-table" cellpadding="0" cellspacing="0">
+      <tr>
+        <td id="quote-bar">&nbsp;</td>
+        <td id="quote-text">
+          &ldquo;This website is a window into my world &mdash; built with passion, coded with purpose.&rdquo;
+        </td>
+      </tr>
+    </table>
 
-.hero-divider {
-    border: none;
-    border-top: 2px solid #181818;
-    margin: 16px 0;
-}
+  </div><!-- end #content -->
 
-#hero-desc {
-    max-width: 560px;
-    line-height: 1.7;
-    font-size: 0.95em;
-    margin: 0 0 16px 0;
-}
+  <!-- FOOTER -->
+  <div id="footer">
+    <p>Ipan's Personal Website &nbsp;|&nbsp; IML254 Individual Project &nbsp;|&nbsp; 2026</p>
+    <p id="footer-sub">Best viewed at 1280&times;720 &middot; Last updated: April 2026</p>
+  </div>
 
-/* TAGS */
-.tag {
-    display: inline-block;
-    font-size: 0.75em;
-    font-weight: 800;
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
-    padding: 4px 12px;
-    margin-right: 6px;
-}
+  <!-- STRIPE BAR BOTTOM -->
+  <div id="stripe-bar"></div>
 
-.tag-red   { background-color: #802520; color: #F5EDDC; }
-.tag-gold  { background-color: #BA8530; color: #181818; }
-.tag-green { background-color: #5C7F71; color: #F5EDDC; }
-
-/* CONTENT */
-#content {
-    max-width: 900px;
-    margin: 0 auto;
-    padding: 28px 24px;
-}
-
-#content h2 {
-    color: #BA8530;
-    font-size: 1.1em;
-    font-weight: 900;
-    text-transform: uppercase;
-    letter-spacing: 3px;
-    border-left: 5px solid #BA8530;
-    padding-left: 12px;
-    margin: 24px 0 14px 0;
-}
-
-.section-divider {
-    border: none;
-    border-top: 2px solid #BA8530;
-    margin: 20px 0;
-}
-
-/* STAT TABLE */
-#stat-table {
-    width: 100%;
-    margin: 0 0 16px 0;
-}
-
-.stat-box {
-    width: 50%;
-    border: 2px solid #BA8530;
-    text-align: center;
-    padding: 20px;
-}
-
-.stat-number {
-    color: #BA8530;
-    font-size: 2.2em;
-    font-weight: 900;
-    letter-spacing: 2px;
-}
-
-.stat-label {
-    color: #F5EDDC;
-    font-size: 0.7em;
-    font-weight: 800;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-}
-
-/* NAVIGATION CARDS TABLE */
-#nav-cards {
-    width: 100%;
-}
-
-.card {
-    width: 50%;
-    border: 2px solid #BA8530;
-    padding: 18px;
-    vertical-align: top;
-    background-color: rgba(245, 237, 220, 0.04);
-}
-
-.card-green {
-    width: 50%;
-    border: 2px solid #5C7F71;
-    padding: 18px;
-    vertical-align: top;
-    background-color: rgba(92, 127, 113, 0.08);
-}
-
-.card h3, .card-green h3 {
-    color: #802520;
-    font-size: 0.85em;
-    font-weight: 900;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    margin: 0 0 8px 0;
-}
-
-.card h3 a {
-    color: #802520;
-    text-decoration: none;
-}
-
-.card h3 a:hover {
-    color: #BA8530;
-    text-decoration: underline;
-}
-
-.card p, .card-green p {
-    color: #F5EDDC;
-    font-size: 0.85em;
-    line-height: 1.6;
-    margin: 0;
-}
-
-/* QUOTE */
-#quote-table {
-    width: 100%;
-    margin: 8px 0;
-}
-
-#quote-bar {
-    width: 5px;
-    background-color: #802520;
-}
-
-#quote-text {
-    padding-left: 16px;
-    color: #BA8530;
-    font-size: 1em;
-    font-style: italic;
-    font-weight: 700;
-    letter-spacing: 1px;
-}
-
-/* FOOTER */
-#footer {
-    background-color: #181818;
-    border-top: 4px solid #5C7F71;
-    color: #F5EDDC;
-    text-align: center;
-    padding: 10px 24px;
-    font-size: 0.7em;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-}
-
-#footer p { margin: 4px 0; }
-
-#footer-sub {
-    color: #BA8530;
-    font-size: 0.9em;
-}
+</body>
+</html>
