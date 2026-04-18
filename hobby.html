@@ -101,7 +101,7 @@
         <p>
           Outside of my studies, I make it a point to engage in activities that
           <strong>recharge my energy</strong> and <em>bring me joy</em>. Hobbies are
-          not just pastimes — they are a window into a person's <span class="text-accent">
+          not just pastimes &#8212; they are a window into a person's <span class="text-accent">
           character, creativity, and values</span>. Here are the things I love to do
           most in my free time.
         </p>
@@ -171,7 +171,7 @@
           <p>
             I have been playing since I was 10 years old. My father taught me the basics,
             and ever since then, it has been a family tradition. I especially admire
-            <u>Lee Chong Wei</u> — a true legend of Malaysian badminton. Read about his
+            <u>Lee Chong Wei</u> &#8212; a true legend of Malaysian badminton. Read about his
             achievements at
             <a href="https://en.wikipedia.org/wiki/Lee_Chong_Wei" class="ext-link"
                target="_blank">Wikipedia</a>.
@@ -194,7 +194,7 @@
             and mee goreng.
           </p>
           <p>
-            <em>"Cooking is love made visible."</em> — I truly believe that. I often
+            <em>"Cooking is love made visible."</em> &#8212; I truly believe that. I often
             cook for my family during weekends when I go back home. It is our
             <span class="text-accent">special bonding time</span>.
           </p>
@@ -225,7 +225,7 @@
           <tr>
             <td><strong>Reading</strong></td>
             <td>2010</td>
-            <td>3–4 times/week</td>
+            <td>3&#8211;4 times/week</td>
             <td><span class="text-accent">Advanced</span></td>
             <td>Physical books, e-reader</td>
           </tr>
@@ -245,7 +245,6 @@
           </tr>
         </table>
 
-        <!-- Thumbnail gallery of hobby images -->
         <h2>Hobby Gallery</h2>
         <p>Click on any thumbnail to view a larger version of the photo:</p>
 
@@ -303,12 +302,28 @@
       </tr>
       <tr>
         <td colspan="3" class="disc-center" style="padding-top: 6px; color: #6a5040;">
-          IML254 – Introduction to Web Content Development &#160;|&#160; UiTM
+          IML254 &#8211; Introduction to Web Content Development &#160;|&#160; UiTM
         </td>
       </tr>
     </table>
   </div>
 
 </div>
+
+  <!-- ══ DARK MODE TOGGLE ══ -->
+  <button id="dark-toggle" onclick="toggleDark()" title="Toggle Dark Mode">&#127769;</button>
+
+  <script type="text/javascript">
+    function toggleDark() {
+      var isDark = document.body.classList.toggle("dark-mode");
+      localStorage.setItem("darkMode", isDark ? "1" : "0");
+      document.getElementById("dark-toggle").textContent = isDark ? "\u2600\uFE0F" : "\uD83C\uDF19";
+    }
+    if (localStorage.getItem("darkMode") === "1") {
+      document.body.classList.add("dark-mode");
+      document.getElementById("dark-toggle").textContent = "\u2600\uFE0F";
+    }
+  </script>
+
 </body>
 </html>
