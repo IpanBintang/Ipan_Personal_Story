@@ -13,7 +13,7 @@
 <body>
 
   <!-- BACKGROUND MUSIC -->
-  <audio id="bg-music" autoplay="autoplay" loop="loop">
+  <audio id="bg-music" loop="loop">
     <source src="audio/background.mp3" type="audio/mpeg" />
     Your browser does not support the audio element.
   </audio>
@@ -202,7 +202,7 @@
   <button id="music-toggle" onclick="toggleMusic()" title="Toggle Music">&#128264;</button>
 
   <script type="text/javascript">
-    /* DARK MODE */
+    /* ── DARK MODE ── */
     function toggleDark() {
       var isDark = document.body.classList.toggle("dark-mode");
       localStorage.setItem("darkMode", isDark ? "1" : "0");
@@ -213,10 +213,31 @@
       document.getElementById("dark-toggle").textContent = "\u2600\uFE0F";
     }
 
-    /* MUSIC */
-    var music = document.getElementById("bg-music");
+    /* ── MUSIC (cross-page timestamp restore) ── */
+    var music    = document.getElementById("bg-music");
     var musicBtn = document.getElementById("music-toggle");
     music.volume = 0.4;
+
+    /* Once audio is ready, seek to saved position then play if user had it on */
+    music.addEventListener("canplay", function() {
+      var savedTime = parseFloat(localStorage.getItem("musicTime") || "0");
+      if (savedTime > 0) { music.currentTime = savedTime; }
+      if (localStorage.getItem("musicOn") === "1") {
+        music.play().then(function() {
+          musicBtn.textContent = "\uD83C\uDFB5";
+        }).catch(function() {
+          musicBtn.textContent = "\uD83D\uDD07";
+        });
+      } else {
+        musicBtn.textContent = "\uD83D\uDD07";
+      }
+    }, { once: true });
+
+    /* Save exact timestamp + play state just before leaving the page */
+    window.addEventListener("beforeunload", function() {
+      localStorage.setItem("musicTime", music.currentTime);
+      localStorage.setItem("musicOn",   music.paused ? "0" : "1");
+    });
 
     function toggleMusic() {
       if (music.paused) {
@@ -228,18 +249,6 @@
         musicBtn.textContent = "\uD83D\uDD07";
         localStorage.setItem("musicOn", "0");
       }
-    }
-
-    /* Restore music preference across pages */
-    if (localStorage.getItem("musicOn") === "1") {
-      music.play().then(function() {
-        musicBtn.textContent = "\uD83C\uDFB5";
-      }).catch(function() {
-        musicBtn.textContent = "\uD83D\uDD07";
-      });
-    } else {
-      music.pause();
-      musicBtn.textContent = "\uD83D\uDD07";
     }
   </script>
 
