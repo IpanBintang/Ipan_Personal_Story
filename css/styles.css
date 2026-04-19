@@ -704,3 +704,41 @@ body.dark-mode #dark-toggle:hover {
     color: #0a1628;
     border-color: #1ab8f0;
 }
+
+/* ══════════════════════════════════════════════
+   MUSIC TOGGLE BUTTON
+   ══════════════════════════════════════════════ */
+#music-toggle {
+    position: fixed;
+    bottom: 24px;
+    right: 80px;
+    z-index: 9999;
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    border: 2px solid #1ab8f0;
+    background-color: #0d6ecc;
+    color: #ffffff;
+    font-size: 20px;
+    cursor: pointer;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.4);
+    transition: background-color 0.3s, transform 0.2s;
+    line-height: 1;
+}
+
+#music-toggle:hover {
+    background-color: #2de0f5;
+    color: #0a1628;
+    transform: scale(1.1);
+}
+
+body.dark-mode #music-toggle {
+    background-color: #0d1f3c;
+    border-color: #f9c13a;
+    color: #f9c13a;
+}
+
+body.dark-mode #music-toggle:hover {
+    background-color: #f9c13a;
+    color: #0a1628;
+}
