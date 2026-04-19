@@ -12,9 +12,15 @@
 </head>
 <body>
 
+  <!-- BACKGROUND MUSIC -->
+  <audio id="bg-music" autoplay="autoplay" loop="loop">
+    <source src="audio/background.mp3" type="audio/mpeg" />
+    Your browser does not support the audio element.
+  </audio>
+
 <div class="page-wrapper">
 
-  <!-- ══ HEADER / BANNER ══ -->
+  <!-- HEADER / BANNER -->
   <div id="header">
     <table cellpadding="0" cellspacing="0" border="0">
       <tr>
@@ -32,7 +38,7 @@
     </table>
   </div>
 
-  <!-- ══ NAVIGATION ══ -->
+  <!-- NAVIGATION -->
   <div id="navigation">
     <table cellpadding="0" cellspacing="0" border="0" width="100%">
       <tr>
@@ -47,18 +53,16 @@
     </table>
   </div>
 
-  <!-- ══ MAIN TABLE LAYOUT ══ -->
+  <!-- MAIN TABLE LAYOUT -->
   <table id="main-table" cellpadding="0" cellspacing="0" border="0">
     <tr>
 
       <!-- SIDEBAR -->
       <td id="sidebar">
-
         <div class="announce-box">
           <strong>&#128100; About Me</strong>
           Get to know the person behind this website!
         </div>
-
         <div class="sidebar-box">
           <h3>On This Page</h3>
           <ul>
@@ -68,7 +72,6 @@
             <li><a href="#favourites">&#9658; Favourites</a></li>
           </ul>
         </div>
-
         <div class="sidebar-box">
           <h3>Quick Links</h3>
           <ul>
@@ -80,132 +83,65 @@
             <li><a href="contact.html">&#9658; Contact</a></li>
           </ul>
         </div>
-
         <div class="sidebar-box">
           <h3>Favourite Quotes</h3>
           <p style="font-size: 12px; font-style: italic; color: #5a3e1b; line-height: 1.6;">
             "Be yourself; everyone else is already taken."<br />
-            <span style="color: #c07830; font-size: 11px;">&#8212; Oscar Wilde</span>
+            <span style="color: #0d6ecc; font-size: 11px;">&#8212; Oscar Wilde</span>
           </p>
         </div>
-
       </td>
 
       <!-- CONTENT -->
       <td id="content">
-
         <a name="top" id="top"></a>
         <h1>About Me</h1>
 
         <div class="clearfix">
-          <img src="images/about-photo.jpg" alt="My Photo" width="160" height="190"
-               class="float-right" />
-          <p>
-            My full name is <strong class="text-accent">Your Full Name</strong>. I was born on
-            <u>1 January 2005</u> in <strong>Kuala Lumpur</strong>, Malaysia. I am currently
-            a student at <em>Universiti Teknologi MARA (UiTM)</em>, pursuing my Diploma in
-            <strong>Information Management</strong>.
-          </p>
-          <p>
-            I have always been a <span class="text-italic">curious and creative person</span>.
-            From a young age, I was fascinated by computers, art, and storytelling. Today,
-            those interests have grown into a genuine passion for <span class="text-accent">
-            technology, design, and communication</span>.
-          </p>
-          <p>
-            I believe that learning never stops &#8212; whether it is inside the classroom or
-            through everyday life experiences. I enjoy meeting new people and
-            <em>discovering new perspectives</em>.
-          </p>
+          <img src="images/about-photo.jpg" alt="My Photo" width="160" height="190" class="float-right" />
+          <p>My full name is <strong class="text-accent">Your Full Name</strong>. I was born on
+          <u>1 January 2005</u> in <strong>Kuala Lumpur</strong>, Malaysia. I am currently
+          a student at <em>Universiti Teknologi MARA (UiTM)</em>, pursuing my Diploma in
+          <strong>Information Management</strong>.</p>
+          <p>I have always been a <span class="text-italic">curious and creative person</span>.
+          From a young age, I was fascinated by computers, art, and storytelling. Today,
+          those interests have grown into a genuine passion for <span class="text-accent">
+          technology, design, and communication</span>.</p>
+          <p>I believe that learning never stops &#8212; whether it is inside the classroom or
+          through everyday life experiences. I enjoy meeting new people and
+          <em>discovering new perspectives</em>.</p>
         </div>
 
         <hr class="thick" />
 
         <a name="details" id="details"></a>
         <h2>Personal Details</h2>
-
         <table class="data-table" cellpadding="0" cellspacing="0" border="0">
-          <tr>
-            <th style="width: 35%;">Field</th>
-            <th>Information</th>
-          </tr>
-          <tr>
-            <td><strong>Full Name</strong></td>
-            <td>Your Full Name Bin/Binti Your Father's Name</td>
-          </tr>
-          <tr>
-            <td><strong>Nickname</strong></td>
-            <td>Your Nickname</td>
-          </tr>
-          <tr>
-            <td><strong>Date of Birth</strong></td>
-            <td>1 January 2005</td>
-          </tr>
-          <tr>
-            <td><strong>Place of Birth</strong></td>
-            <td>Kuala Lumpur, Malaysia</td>
-          </tr>
-          <tr>
-            <td><strong>Nationality</strong></td>
-            <td>Malaysian</td>
-          </tr>
-          <tr>
-            <td><strong>Religion</strong></td>
-            <td>Islam</td>
-          </tr>
-          <tr>
-            <td><strong>Current Address</strong></td>
-            <td>UiTM Campus, Shah Alam, Selangor</td>
-          </tr>
-          <tr>
-            <td><strong>Hometown</strong></td>
-            <td>Kuala Lumpur, Malaysia</td>
-          </tr>
-          <tr>
-            <td><strong>Email</strong></td>
-            <td><a href="mailto:yourname@student.uitm.edu.my">yourname@student.uitm.edu.my</a></td>
-          </tr>
-          <tr>
-            <td><strong>Language</strong></td>
-            <td>Bahasa Malaysia, English</td>
-          </tr>
+          <tr><th style="width: 35%;">Field</th><th>Information</th></tr>
+          <tr><td><strong>Full Name</strong></td><td>Your Full Name Bin/Binti Your Father's Name</td></tr>
+          <tr><td><strong>Nickname</strong></td><td>Your Nickname</td></tr>
+          <tr><td><strong>Date of Birth</strong></td><td>1 January 2005</td></tr>
+          <tr><td><strong>Place of Birth</strong></td><td>Kuala Lumpur, Malaysia</td></tr>
+          <tr><td><strong>Nationality</strong></td><td>Malaysian</td></tr>
+          <tr><td><strong>Religion</strong></td><td>Islam</td></tr>
+          <tr><td><strong>Current Address</strong></td><td>UiTM Campus, Shah Alam, Selangor</td></tr>
+          <tr><td><strong>Hometown</strong></td><td>Kuala Lumpur, Malaysia</td></tr>
+          <tr><td><strong>Email</strong></td><td><a href="mailto:yourname@student.uitm.edu.my">yourname@student.uitm.edu.my</a></td></tr>
+          <tr><td><strong>Language</strong></td><td>Bahasa Malaysia, English</td></tr>
         </table>
 
         <a name="personality" id="personality"></a>
         <h2>My Personality</h2>
-        <p>
-          People who know me well would describe me as <strong>hardworking, friendly, and
-          creative</strong>. I am the kind of person who takes time to think things through
-          before acting. I enjoy <em>working in teams</em> but I am also comfortable working
-          independently when needed.
-        </p>
-
+        <p>People who know me well would describe me as <strong>hardworking, friendly, and
+        creative</strong>. I am the kind of person who takes time to think things through
+        before acting. I enjoy <em>working in teams</em> but I am also comfortable working
+        independently when needed.</p>
         <table class="data-table" cellpadding="0" cellspacing="0" border="0">
-          <tr>
-            <th>Strength</th>
-            <th>Weakness</th>
-            <th>Working Style</th>
-          </tr>
-          <tr>
-            <td>Creative thinking</td>
-            <td>Sometimes overthink things</td>
-            <td>Detail-oriented</td>
-          </tr>
-          <tr>
-            <td>Good listener</td>
-            <td>Shy at first meeting</td>
-            <td>Plan before doing</td>
-          </tr>
-          <tr>
-            <td>Hardworking</td>
-            <td>Perfectionist tendency</td>
-            <td>Prefer organised work</td>
-          </tr>
-          <tr>
-            <td>Quick learner</td>
-            <td>Easily distracted</td>
-            <td>Work well under pressure</td>
-          </tr>
+          <tr><th>Strength</th><th>Weakness</th><th>Working Style</th></tr>
+          <tr><td>Creative thinking</td><td>Sometimes overthink things</td><td>Detail-oriented</td></tr>
+          <tr><td>Good listener</td><td>Shy at first meeting</td><td>Plan before doing</td></tr>
+          <tr><td>Hardworking</td><td>Perfectionist tendency</td><td>Prefer organised work</td></tr>
+          <tr><td>Quick learner</td><td>Easily distracted</td><td>Work well under pressure</td></tr>
         </table>
 
         <a name="goals" id="goals"></a>
@@ -214,53 +150,22 @@
           "Success is not final, failure is not fatal: it is the courage to continue that counts."
           <cite>&#8212; Winston Churchill</cite>
         </blockquote>
-        <p>
-          My <span class="text-bold text-accent">short-term goal</span> is to complete my
-          Diploma with excellent results and gain relevant work experience through internships.
-          My <span class="text-bold text-accent">long-term goal</span> is to pursue a
-          Bachelor's Degree and eventually build a career in the field of
-          <u>Information Technology and Digital Media</u>.
-        </p>
+        <p>My <span class="text-bold text-accent">short-term goal</span> is to complete my
+        Diploma with excellent results and gain relevant work experience through internships.
+        My <span class="text-bold text-accent">long-term goal</span> is to pursue a
+        Bachelor's Degree and eventually build a career in the field of
+        <u>Information Technology and Digital Media</u>.</p>
 
         <a name="favourites" id="favourites"></a>
         <h2>My Favourites</h2>
-
         <table class="data-table" cellpadding="0" cellspacing="0" border="0">
-          <tr>
-            <th>Category</th>
-            <th>Favourite</th>
-            <th>Why I Like It</th>
-          </tr>
-          <tr>
-            <td>&#127869; Food</td>
-            <td>Nasi Lemak</td>
-            <td>A classic Malaysian comfort food</td>
-          </tr>
-          <tr>
-            <td>&#127926; Music</td>
-            <td>Indie / Lo-fi</td>
-            <td>Relaxing and perfect for studying</td>
-          </tr>
-          <tr>
-            <td>&#127916; Movie</td>
-            <td>Interstellar</td>
-            <td>Inspiring story about science and love</td>
-          </tr>
-          <tr>
-            <td>&#128218; Book</td>
-            <td>Atomic Habits</td>
-            <td>Changed my approach to self-improvement</td>
-          </tr>
-          <tr>
-            <td>&#127968; Place</td>
-            <td>Kuala Lumpur City Centre</td>
-            <td>The energy and beauty of my home city</td>
-          </tr>
-          <tr>
-            <td>&#127955; Sport</td>
-            <td>Badminton</td>
-            <td>Fun, fast, and great exercise</td>
-          </tr>
+          <tr><th>Category</th><th>Favourite</th><th>Why I Like It</th></tr>
+          <tr><td>&#127869; Food</td><td>Nasi Lemak</td><td>A classic Malaysian comfort food</td></tr>
+          <tr><td>&#127926; Music</td><td>Indie / Lo-fi</td><td>Relaxing and perfect for studying</td></tr>
+          <tr><td>&#127916; Movie</td><td>Interstellar</td><td>Inspiring story about science and love</td></tr>
+          <tr><td>&#128218; Book</td><td>Atomic Habits</td><td>Changed my approach to self-improvement</td></tr>
+          <tr><td>&#127968; Place</td><td>Kuala Lumpur City Centre</td><td>The energy and beauty of my home city</td></tr>
+          <tr><td>&#127955; Sport</td><td>Badminton</td><td>Fun, fast, and great exercise</td></tr>
         </table>
 
         <hr />
@@ -268,29 +173,20 @@
           <a href="#top" class="back-top">&#8679; Back to Top</a> &#160;|&#160;
           <a href="hobby.html" class="nav-link">Next: Hobby &#187;</a>
         </p>
-
       </td>
     </tr>
   </table>
 
-  <!-- ══ DISCLAIMER / FOOTER ══ -->
+  <!-- DISCLAIMER / FOOTER -->
   <div id="disclaimer">
     <table class="disclaimer-table" cellpadding="0" cellspacing="0" border="0">
       <tr>
-        <td class="disc-left">
-          Best viewed with: <strong>Google Chrome / Firefox</strong> &#160;|&#160;
-          Resolution: <strong>1024 x 768</strong> or higher
-        </td>
-        <td class="disc-center">
-          <strong>&#169; 2026 Your Name. All Rights Reserved.</strong>
-        </td>
-        <td class="disc-right">
-          Last Updated: <strong>April 2026</strong> &#160;|&#160;
-          <a href="index.html">Home</a>
-        </td>
+        <td class="disc-left">Best viewed with: <strong>Google Chrome / Firefox</strong> &#160;|&#160; Resolution: <strong>1024 x 768</strong> or higher</td>
+        <td class="disc-center"><strong>&#169; 2026 Your Name. All Rights Reserved.</strong></td>
+        <td class="disc-right">Last Updated: <strong>April 2026</strong> &#160;|&#160; <a href="index.html">Home</a></td>
       </tr>
       <tr>
-        <td colspan="3" class="disc-center" style="padding-top: 6px; color: #6a5040;">
+        <td colspan="3" class="disc-center" style="padding-top: 6px;">
           IML254 &#8211; Introduction to Web Content Development &#160;|&#160; UiTM
         </td>
       </tr>
@@ -299,10 +195,14 @@
 
 </div>
 
-  <!-- ══ DARK MODE TOGGLE ══ -->
+  <!-- DARK MODE BUTTON -->
   <button id="dark-toggle" onclick="toggleDark()" title="Toggle Dark Mode">&#127769;</button>
 
+  <!-- MUSIC BUTTON -->
+  <button id="music-toggle" onclick="toggleMusic()" title="Toggle Music">&#128264;</button>
+
   <script type="text/javascript">
+    /* DARK MODE */
     function toggleDark() {
       var isDark = document.body.classList.toggle("dark-mode");
       localStorage.setItem("darkMode", isDark ? "1" : "0");
@@ -311,6 +211,35 @@
     if (localStorage.getItem("darkMode") === "1") {
       document.body.classList.add("dark-mode");
       document.getElementById("dark-toggle").textContent = "\u2600\uFE0F";
+    }
+
+    /* MUSIC */
+    var music = document.getElementById("bg-music");
+    var musicBtn = document.getElementById("music-toggle");
+    music.volume = 0.4;
+
+    function toggleMusic() {
+      if (music.paused) {
+        music.play();
+        musicBtn.textContent = "\uD83C\uDFB5";
+        localStorage.setItem("musicOn", "1");
+      } else {
+        music.pause();
+        musicBtn.textContent = "\uD83D\uDD07";
+        localStorage.setItem("musicOn", "0");
+      }
+    }
+
+    /* Restore music preference across pages */
+    if (localStorage.getItem("musicOn") === "1") {
+      music.play().then(function() {
+        musicBtn.textContent = "\uD83C\uDFB5";
+      }).catch(function() {
+        musicBtn.textContent = "\uD83D\uDD07";
+      });
+    } else {
+      music.pause();
+      musicBtn.textContent = "\uD83D\uDD07";
     }
   </script>
 
