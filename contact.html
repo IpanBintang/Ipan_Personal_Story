@@ -1,0 +1,443 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <meta name="description" content="Contact Your Name - email, WhatsApp and social media" />
+  <meta name="keywords" content="contact, email, whatsapp, social media, personal website" />
+  <meta name="author" content="Your Name" />
+  <title>Contact | My Personal Website</title>
+  <link rel="stylesheet" type="text/css" href="css/styles.css" />
+  <style type="text/css">
+    /* ── Contact page extra styles ── */
+    .contact-card {
+        background-color: #ffffff;
+        border: 1px solid #cccccc;
+        border-left: 5px solid #d41f1f;
+        border-radius: 2px;
+        padding: 18px 20px;
+        margin-bottom: 14px;
+        display: table;
+        width: 100%;
+        box-sizing: border-box;
+        transition: background-color 0.3s, border-color 0.3s;
+    }
+    .contact-card:hover {
+        background-color: #fce8e8;
+        border-left-color: #6e1212;
+    }
+    .contact-icon {
+        display: table-cell;
+        width: 48px;
+        font-size: 24px;
+        vertical-align: middle;
+        text-align: center;
+    }
+    .contact-info {
+        display: table-cell;
+        vertical-align: middle;
+        padding-left: 14px;
+    }
+    .contact-info strong {
+        display: block;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 11px;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        color: #d41f1f;
+        margin-bottom: 3px;
+    }
+    .contact-info a,
+    .contact-info span {
+        font-size: 14px;
+        color: #111111;
+        text-decoration: none;
+    }
+    .contact-info a:hover {
+        color: #d41f1f;
+        text-decoration: underline;
+    }
+    /* Dark mode contact cards */
+    body.dark-mode .contact-card {
+        background-color: #1a1a1a;
+        border-color: #333333;
+        border-left-color: #d41f1f;
+    }
+    body.dark-mode .contact-card:hover {
+        background-color: #2a0a0a;
+        border-left-color: #f0e040;
+    }
+    body.dark-mode .contact-info a,
+    body.dark-mode .contact-info span {
+        color: #eeeeee;
+    }
+    body.dark-mode .contact-info a:hover {
+        color: #f0e040;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- BACKGROUND MUSIC -->
+  <audio id="bg-music" loop="loop">
+    <source src="audio/background.mp3" type="audio/mpeg" />
+    Your browser does not support the audio element.
+  </audio>
+
+<div class="page-wrapper">
+
+  <!-- HEADER / BANNER -->
+  <div id="header">
+    <table cellpadding="0" cellspacing="0" border="0">
+      <tr>
+        <td class="banner-left">
+          <img src="images/logo.png" alt="Logo" width="80" height="80" />
+        </td>
+        <td class="banner-center">
+          <p class="site-title">Your Name</p>
+          <p class="site-subtitle">&#9670; My Personal Website &#9670;</p>
+        </td>
+        <td class="banner-right">
+          <img src="images/banner-deco.png" alt="Decoration" width="80" height="80" />
+        </td>
+      </tr>
+    </table>
+  </div>
+
+  <!-- NAVIGATION -->
+  <div id="navigation">
+    <table cellpadding="0" cellspacing="0" border="0" width="100%">
+      <tr>
+        <td><a href="index.html">Home</a></td>
+        <td><a href="about.html">About Me</a></td>
+        <td><a href="hobby.html">Hobby</a></td>
+        <td><a href="education.html">Education</a></td>
+        <td><a href="family.html">Family</a></td>
+        <td><a href="gallery.html">Gallery</a></td>
+        <td><a href="contact.html" class="active">Contact</a></td>
+      </tr>
+    </table>
+  </div>
+
+  <!-- MAIN TABLE LAYOUT -->
+  <table id="main-table" cellpadding="0" cellspacing="0" border="0">
+    <tr>
+
+      <!-- SIDEBAR -->
+      <td id="sidebar">
+        <div class="announce-box">
+          <strong>&#9993; Contact Me</strong>
+          Feel free to reach out anytime!
+        </div>
+        <div class="sidebar-box">
+          <h3>On This Page</h3>
+          <ul>
+            <li><a href="#getintouch">&#9658; Get In Touch</a></li>
+            <li><a href="#email">&#9658; Email</a></li>
+            <li><a href="#whatsapp">&#9658; WhatsApp</a></li>
+            <li><a href="#social">&#9658; Social Media</a></li>
+            <li><a href="#response">&#9658; Response Time</a></li>
+          </ul>
+        </div>
+        <div class="sidebar-box">
+          <h3>Quick Links</h3>
+          <ul>
+            <li><a href="index.html">&#9658; Home</a></li>
+            <li><a href="about.html">&#9658; About Me</a></li>
+            <li><a href="hobby.html">&#9658; Hobby</a></li>
+            <li><a href="education.html">&#9658; Education</a></li>
+            <li><a href="family.html">&#9658; Family</a></li>
+            <li><a href="gallery.html">&#9658; Gallery</a></li>
+          </ul>
+        </div>
+        <div class="sidebar-box">
+          <h3>Availability</h3>
+          <ul>
+            <li><span class="text-muted">Weekdays:</span> After 5pm</li>
+            <li><span class="text-muted">Weekends:</span> Anytime</li>
+            <li><span class="text-muted">Response:</span> Within 24hrs</li>
+          </ul>
+        </div>
+      </td>
+
+      <!-- CONTENT -->
+      <td id="content">
+        <a name="top" id="top"></a>
+        <h1>Contact Me</h1>
+
+        <a name="getintouch" id="getintouch"></a>
+        <p>Thank you for visiting my website! I would love to hear from you.
+        Whether you have a <strong>question, a suggestion,</strong> or simply want to
+        <em>say hello</em> &#8212; feel free to reach out through any of the channels below.
+        I will try my best to reply as soon as possible.</p>
+
+        <blockquote>
+          "The single biggest problem in communication is the illusion that it has taken place."
+          <cite>&#8212; George Bernard Shaw</cite>
+        </blockquote>
+
+        <hr class="thick" />
+
+        <!-- CONTACT METHODS TABLE OVERVIEW -->
+        <h2>Contact Channels</h2>
+        <table class="data-table" cellpadding="0" cellspacing="0" border="0">
+          <tr>
+            <th>Channel</th>
+            <th>Address / Handle</th>
+            <th>Best For</th>
+            <th>Response Time</th>
+          </tr>
+          <tr>
+            <td>&#128140; Email</td>
+            <td><a href="mailto:yourname@student.uitm.edu.my">yourname@student.uitm.edu.my</a></td>
+            <td>Formal enquiries</td>
+            <td>Within 24 hours</td>
+          </tr>
+          <tr>
+            <td>&#128242; Personal Email</td>
+            <td><a href="mailto:yourpersonal@gmail.com">yourpersonal@gmail.com</a></td>
+            <td>General messages</td>
+            <td>Within 12 hours</td>
+          </tr>
+          <tr>
+            <td>&#128241; WhatsApp</td>
+            <td>+60 1X-XXX XXXX</td>
+            <td>Quick chats</td>
+            <td>Within a few hours</td>
+          </tr>
+          <tr>
+            <td>&#128247; Instagram</td>
+            <td><a href="https://www.instagram.com" class="ext-link" target="_blank">@yourusername</a></td>
+            <td>Casual / DM</td>
+            <td>Same day</td>
+          </tr>
+          <tr>
+            <td>&#128100; Facebook</td>
+            <td><a href="https://www.facebook.com" class="ext-link" target="_blank">Your Name</a></td>
+            <td>General contact</td>
+            <td>1&#8211;2 days</td>
+          </tr>
+          <tr>
+            <td>&#128188; LinkedIn</td>
+            <td><a href="https://www.linkedin.com" class="ext-link" target="_blank">/in/yourname</a></td>
+            <td>Professional</td>
+            <td>Within 24 hours</td>
+          </tr>
+        </table>
+
+        <hr />
+
+        <!-- EMAIL SECTION -->
+        <a name="email" id="email"></a>
+        <h2>&#128140; Email</h2>
+        <p>Email is the best way to reach me for <strong>academic, formal, or detailed</strong>
+        enquiries. I check my email regularly and will respond promptly.</p>
+
+        <div class="contact-card">
+          <div class="contact-icon">&#127979;</div>
+          <div class="contact-info">
+            <strong>University Email</strong>
+            <a href="mailto:yourname@student.uitm.edu.my">yourname@student.uitm.edu.my</a>
+          </div>
+        </div>
+
+        <div class="contact-card">
+          <div class="contact-icon">&#128140;</div>
+          <div class="contact-info">
+            <strong>Personal Email</strong>
+            <a href="mailto:yourpersonal@gmail.com">yourpersonal@gmail.com</a>
+          </div>
+        </div>
+
+        <hr />
+
+        <!-- WHATSAPP SECTION -->
+        <a name="whatsapp" id="whatsapp"></a>
+        <h2>&#128241; WhatsApp</h2>
+        <p>For <strong>quick questions</strong> or casual conversation, WhatsApp is the
+        fastest way to reach me. Please introduce yourself when you message me for the
+        first time!</p>
+
+        <div class="contact-card">
+          <div class="contact-icon">&#128241;</div>
+          <div class="contact-info">
+            <strong>WhatsApp Number</strong>
+            <a href="https://wa.me/601XXXXXXXX" class="ext-link" target="_blank">+60 1X-XXX XXXX</a>
+          </div>
+        </div>
+
+        <p class="text-muted" style="margin-top: 6px;">
+          &#9888; Please note: I may not always be available immediately.
+          I will reply as soon as I can!
+        </p>
+
+        <hr />
+
+        <!-- SOCIAL MEDIA SECTION -->
+        <a name="social" id="social"></a>
+        <h2>&#127760; Social Media</h2>
+        <p>You can also find me on the following social media platforms.
+        Feel free to <em>follow, connect, or send a DM</em>!</p>
+
+        <div class="contact-card">
+          <div class="contact-icon">&#128247;</div>
+          <div class="contact-info">
+            <strong>Instagram</strong>
+            <a href="https://www.instagram.com/yourusername" class="ext-link" target="_blank">@yourusername</a>
+          </div>
+        </div>
+
+        <div class="contact-card">
+          <div class="contact-icon">&#128100;</div>
+          <div class="contact-info">
+            <strong>Facebook</strong>
+            <a href="https://www.facebook.com/yourprofile" class="ext-link" target="_blank">Your Name on Facebook</a>
+          </div>
+        </div>
+
+        <div class="contact-card">
+          <div class="contact-icon">&#128188;</div>
+          <div class="contact-info">
+            <strong>LinkedIn</strong>
+            <a href="https://www.linkedin.com/in/yourname" class="ext-link" target="_blank">linkedin.com/in/yourname</a>
+          </div>
+        </div>
+
+        <div class="contact-card">
+          <div class="contact-icon">&#127908;</div>
+          <div class="contact-info">
+            <strong>TikTok</strong>
+            <a href="https://www.tiktok.com/@yourusername" class="ext-link" target="_blank">@yourusername</a>
+          </div>
+        </div>
+
+        <hr />
+
+        <!-- RESPONSE TIME -->
+        <a name="response" id="response"></a>
+        <h2>&#128336; Response Time &#38; Guidelines</h2>
+        <table class="data-table" cellpadding="0" cellspacing="0" border="0">
+          <tr>
+            <th>Day</th>
+            <th>Availability</th>
+            <th>Expected Response</th>
+          </tr>
+          <tr>
+            <td>Monday &#8211; Friday</td>
+            <td>After 5:00 PM</td>
+            <td>Within 24 hours</td>
+          </tr>
+          <tr>
+            <td>Saturday</td>
+            <td>All day</td>
+            <td>Within a few hours</td>
+          </tr>
+          <tr>
+            <td>Sunday</td>
+            <td>All day</td>
+            <td>Within a few hours</td>
+          </tr>
+          <tr>
+            <td>Public Holidays</td>
+            <td>All day</td>
+            <td>Same day</td>
+          </tr>
+          <tr>
+            <td>Exam Period</td>
+            <td>Limited</td>
+            <td><span class="text-accent">May take longer &#8212; please be patient!</span></td>
+          </tr>
+        </table>
+
+        <p>
+          Please keep messages <strong>respectful and appropriate</strong>.
+          I look forward to hearing from you. &#128522;
+        </p>
+
+        <hr />
+        <p>
+          <a href="#top" class="back-top">&#8679; Back to Top</a> &#160;|&#160;
+          <a href="gallery.html" class="nav-link">&#171; Gallery</a> &#160;|&#160;
+          <a href="index.html" class="nav-link">Home &#187;</a>
+        </p>
+
+      </td>
+    </tr>
+  </table>
+
+  <!-- DISCLAIMER / FOOTER -->
+  <div id="disclaimer">
+    <table class="disclaimer-table" cellpadding="0" cellspacing="0" border="0">
+      <tr>
+        <td class="disc-left">Best viewed with: <strong>Google Chrome / Firefox</strong> &#160;|&#160; Resolution: <strong>1024 x 768</strong> or higher</td>
+        <td class="disc-center"><strong>&#169; 2026 Your Name. All Rights Reserved.</strong></td>
+        <td class="disc-right">Last Updated: <strong>April 2026</strong> &#160;|&#160; <a href="index.html">Home</a></td>
+      </tr>
+      <tr>
+        <td colspan="3" class="disc-center" style="padding-top: 6px;">
+          IML254 &#8211; Introduction to Web Content Development &#160;|&#160; UiTM
+        </td>
+      </tr>
+    </table>
+  </div>
+
+</div>
+
+  <!-- DARK MODE BUTTON -->
+  <button id="dark-toggle" onclick="toggleDark()" title="Toggle Dark Mode">&#127769;</button>
+
+  <!-- MUSIC BUTTON -->
+  <button id="music-toggle" onclick="toggleMusic()" title="Toggle Music">&#128264;</button>
+
+  <script type="text/javascript">
+    /* ── DARK MODE ── */
+    function toggleDark() {
+      var isDark = document.body.classList.toggle("dark-mode");
+      localStorage.setItem("darkMode", isDark ? "1" : "0");
+      document.getElementById("dark-toggle").textContent = isDark ? "\u2600\uFE0F" : "\uD83C\uDF19";
+    }
+    if (localStorage.getItem("darkMode") === "1") {
+      document.body.classList.add("dark-mode");
+      document.getElementById("dark-toggle").textContent = "\u2600\uFE0F";
+    }
+
+    /* ── MUSIC (cross-page timestamp restore) ── */
+    var music    = document.getElementById("bg-music");
+    var musicBtn = document.getElementById("music-toggle");
+    music.volume = 0.4;
+
+    music.addEventListener("canplay", function() {
+      var savedTime = parseFloat(localStorage.getItem("musicTime") || "0");
+      if (savedTime > 0) { music.currentTime = savedTime; }
+      if (localStorage.getItem("musicOn") === "1") {
+        music.play().then(function() {
+          musicBtn.textContent = "\uD83C\uDFB5";
+        }).catch(function() {
+          musicBtn.textContent = "\uD83D\uDD07";
+        });
+      } else {
+        musicBtn.textContent = "\uD83D\uDD07";
+      }
+    }, { once: true });
+
+    window.addEventListener("beforeunload", function() {
+      localStorage.setItem("musicTime", music.currentTime);
+      localStorage.setItem("musicOn",   music.paused ? "0" : "1");
+    });
+
+    function toggleMusic() {
+      if (music.paused) {
+        music.play();
+        musicBtn.textContent = "\uD83C\uDFB5";
+        localStorage.setItem("musicOn", "1");
+      } else {
+        music.pause();
+        musicBtn.textContent = "\uD83D\uDD07";
+        localStorage.setItem("musicOn", "0");
+      }
+    }
+  </script>
+
+</body>
+</html>
