@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <meta name="description" content="Photo gallery of Your Name" />
+  <meta name="keywords" content="gallery, photos, personal website" />
+  <meta name="author" content="Your Name" />
+  <title>Gallery | My Personal Website</title>
+  <link rel="stylesheet" type="text/css" href="css/styles.css" />
+</head>
+<body>
+
+  <!-- BACKGROUND MUSIC -->
+  <audio id="bg-music" loop="loop">
+    <source src="audio/background.mp3" type="audio/mpeg" />
+    Your browser does not support the audio element.
+  </audio>
+
+<div class="page-wrapper">
+
+  <!-- HEADER / BANNER -->
+  <div id="header">
+    <table cellpadding="0" cellspacing="0" border="0">
+      <tr>
+        <td class="banner-left">
+          <img src="images/logo.png" alt="Logo" width="80" height="80" />
+        </td>
+        <td class="banner-center">
+          <p class="site-title">Your Name</p>
+          <p class="site-subtitle">&#9670; My Personal Website &#9670;</p>
+        </td>
+        <td class="banner-right">
+          <img src="images/banner-deco.png" alt="Decoration" width="80" height="80" />
+        </td>
+      </tr>
+    </table>
+  </div>
+
+  <!-- NAVIGATION -->
+  <div id="navigation">
+    <table cellpadding="0" cellspacing="0" border="0" width="100%">
+      <tr>
+        <td><a href="index.html">Home</a></td>
+        <td><a href="about.html">About Me</a></td>
+        <td><a href="hobby.html">Hobby</a></td>
+        <td><a href="education.html">Education</a></td>
+        <td><a href="family.html">Family</a></td>
+        <td><a href="gallery.html" class="active">Gallery</a></td>
+        <td><a href="contact.html">Contact</a></td>
+      </tr>
+    </table>
+  </div>
+
+  <!-- MAIN TABLE LAYOUT -->
+  <table id="main-table" cellpadding="0" cellspacing="0" border="0">
+    <tr>
+
+      <!-- SIDEBAR -->
+      <td id="sidebar">
+        <div class="announce-box">
+          <strong>&#128247; Gallery</strong>
+          Photos coming soon!
+        </div>
+        <div class="sidebar-box">
+          <h3>Quick Links</h3>
+          <ul>
+            <li><a href="index.html">&#9658; Home</a></li>
+            <li><a href="about.html">&#9658; About Me</a></li>
+            <li><a href="hobby.html">&#9658; Hobby</a></li>
+            <li><a href="education.html">&#9658; Education</a></li>
+            <li><a href="family.html">&#9658; Family</a></li>
+            <li><a href="contact.html">&#9658; Contact</a></li>
+          </ul>
+        </div>
+      </td>
+
+      <!-- CONTENT -->
+      <td id="content">
+        <a name="top" id="top"></a>
+        <h1>Gallery</h1>
+        <hr class="thick" />
+        <div class="profile-box" style="text-align: center; padding: 40px 20px;">
+          <p style="font-size: 48px; margin-bottom: 16px;">&#128247;</p>
+          <h2 style="margin-bottom: 12px;">Coming Soon!</h2>
+          <p>This gallery page is currently under construction.
+          Photos and memories will be added here soon. Stay tuned!</p>
+          <p style="margin-top: 20px;">
+            <a href="index.html" class="btn-secondary">&#8592; Back to Home</a>
+          </p>
+        </div>
+      </td>
+    </tr>
+  </table>
+
+  <!-- DISCLAIMER / FOOTER -->
+  <div id="disclaimer">
+    <table class="disclaimer-table" cellpadding="0" cellspacing="0" border="0">
+      <tr>
+        <td class="disc-left">Best viewed with: <strong>Google Chrome / Firefox</strong> &#160;|&#160; Resolution: <strong>1024 x 768</strong> or higher</td>
+        <td class="disc-center"><strong>&#169; 2026 Your Name. All Rights Reserved.</strong></td>
+        <td class="disc-right">Last Updated: <strong>April 2026</strong> &#160;|&#160; <a href="index.html">Home</a></td>
+      </tr>
+      <tr>
+        <td colspan="3" class="disc-center" style="padding-top: 6px;">
+          IML254 &#8211; Introduction to Web Content Development &#160;|&#160; UiTM
+        </td>
+      </tr>
+    </table>
+  </div>
+
+</div>
+
+  <!-- DARK MODE BUTTON -->
+  <button id="dark-toggle" onclick="toggleDark()" title="Toggle Dark Mode">&#127769;</button>
+  <button id="music-toggle" onclick="toggleMusic()" title="Toggle Music">&#128264;</button>
+
+  <script type="text/javascript">
+    function toggleDark() {
+      var isDark = document.body.classList.toggle("dark-mode");
+      localStorage.setItem("darkMode", isDark ? "1" : "0");
+      document.getElementById("dark-toggle").textContent = isDark ? "\u2600\uFE0F" : "\uD83C\uDF19";
+    }
+    if (localStorage.getItem("darkMode") === "1") {
+      document.body.classList.add("dark-mode");
+      document.getElementById("dark-toggle").textContent = "\u2600\uFE0F";
+    }
+    var music    = document.getElementById("bg-music");
+    var musicBtn = document.getElementById("music-toggle");
+    music.volume = 0.4;
+    music.addEventListener("canplay", function() {
+      var savedTime = parseFloat(localStorage.getItem("musicTime") || "0");
+      if (savedTime > 0) { music.currentTime = savedTime; }
+      if (localStorage.getItem("musicOn") === "1") {
+        music.play().then(function() { musicBtn.textContent = "\uD83C\uDFB5"; }).catch(function() { musicBtn.textContent = "\uD83D\uDD07"; });
+      } else { musicBtn.textContent = "\uD83D\uDD07"; }
+    }, { once: true });
+    window.addEventListener("beforeunload", function() {
+      localStorage.setItem("musicTime", music.currentTime);
+      localStorage.setItem("musicOn",   music.paused ? "0" : "1");
+    });
+    function toggleMusic() {
+      if (music.paused) { music.play(); musicBtn.textContent = "\uD83C\uDFB5"; localStorage.setItem("musicOn", "1"); }
+      else { music.pause(); musicBtn.textContent = "\uD83D\uDD07"; localStorage.setItem("musicOn", "0"); }
+    }
+  </script>
+
+</body>
+</html>
