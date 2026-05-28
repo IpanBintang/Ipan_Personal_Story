@@ -39,19 +39,41 @@
   </div>
 
   <!-- NAVIGATION -->
-  <div id="navigation">
-    <table cellpadding="0" cellspacing="0" border="0" width="100%">
-      <tr>
-        <td><a href="index.html">Home</a></td>
-        <td><a href="about.html" class="active">About Me</a></td>
-        <td><a href="hobby.html">Hobby</a></td>
-        <td><a href="education.html">Education</a></td>
-        <td><a href="family.html">Family</a></td>
-        <td><a href="gallery.html">Gallery</a></td>
-        <td><a href="contact.html">Contact</a></td>
-      </tr>
-    </table>
-  </div>
+ <div id="navigation">
+  <ul id="nav-list">
+    <li><a href="index.html">Home</a></li>
+    <li>
+      <a href="about.html">About Me</a>
+      <ul>
+        <li><a href="about.html#details">Personal Details</a></li>
+        <li><a href="about.html#personality">Personality</a></li>
+        <li><a href="about.html#goals">My Goals</a></li>
+        <li><a href="about.html#favourites">Favourites</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="hobby.html">Hobby</a>
+      <ul>
+        <li><a href="hobby.html#photography">Photography</a></li>
+        <li><a href="hobby.html#reading">Reading</a></li>
+        <li><a href="hobby.html#badminton">Badminton</a></li>
+        <li><a href="hobby.html#cooking">Cooking</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="education.html">Education</a>
+      <ul>
+        <li><a href="education.html#university">University</a></li>
+        <li><a href="education.html#secondary">Secondary School</a></li>
+        <li><a href="education.html#achievements">Achievements</a></li>
+        <li><a href="education.html#cocurriculum">Co-Curriculum</a></li>
+      </ul>
+    </li>
+    <li><a href="family.html">Family</a></li>
+    <li><a href="gallery.html">Gallery</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+</div>
 
   <!-- MAIN TABLE LAYOUT -->
   <table id="main-table" cellpadding="0" cellspacing="0" border="0">
@@ -201,56 +223,114 @@
   <!-- MUSIC BUTTON -->
   <button id="music-toggle" onclick="toggleMusic()" title="Toggle Music">&#128264;</button>
 
-  <script type="text/javascript">
-    /* ── DARK MODE ── */
-    function toggleDark() {
-      var isDark = document.body.classList.toggle("dark-mode");
-      localStorage.setItem("darkMode", isDark ? "1" : "0");
-      document.getElementById("dark-toggle").textContent = isDark ? "\u2600\uFE0F" : "\uD83C\uDF19";
-    }
-    if (localStorage.getItem("darkMode") === "1") {
-      document.body.classList.add("dark-mode");
-      document.getElementById("dark-toggle").textContent = "\u2600\uFE0F";
-    }
+ <!-- RAIN CANVAS -->
+<canvas id="rain-canvas"></canvas>
 
-    /* ── MUSIC (cross-page timestamp restore) ── */
-    var music    = document.getElementById("bg-music");
-    var musicBtn = document.getElementById("music-toggle");
-    music.volume = 0.4;
+<script type="text/javascript">
+  /* ── DARK MODE ── */
+  function toggleDark() {
+    var isDark = document.body.classList.toggle("dark-mode");
+    localStorage.setItem("darkMode", isDark ? "1" : "0");
+    document.getElementById("dark-toggle").textContent = isDark ? "\u2600\uFE0F" : "\uD83C\uDF19";
+    if (isDark) { startRain(); } else { stopRain(); }
+  }
+  if (localStorage.getItem("darkMode") === "1") {
+    document.body.classList.add("dark-mode");
+    document.getElementById("dark-toggle").textContent = "\u2600\uFE0F";
+  }
 
-    /* Once audio is ready, seek to saved position then play if user had it on */
-    music.addEventListener("canplay", function() {
-      var savedTime = parseFloat(localStorage.getItem("musicTime") || "0");
-      if (savedTime > 0) { music.currentTime = savedTime; }
-      if (localStorage.getItem("musicOn") === "1") {
-        music.play().then(function() {
-          musicBtn.textContent = "\uD83C\uDFB5";
-        }).catch(function() {
-          musicBtn.textContent = "\uD83D\uDD07";
-        });
-      } else {
-        musicBtn.textContent = "\uD83D\uDD07";
-      }
-    }, { once: true });
+  /* ── RAIN EFFECT ── */
+  var rainInterval = null;
+  var canvas = document.getElementById("rain-canvas");
+  var ctx = canvas.getContext("2d");
 
-    /* Save exact timestamp + play state just before leaving the page */
-    window.addEventListener("beforeunload", function() {
-      localStorage.setItem("musicTime", music.currentTime);
-      localStorage.setItem("musicOn",   music.paused ? "0" : "1");
+  function resizeCanvas() {
+    canvas.width  = window.innerWidth;
+    canvas.height = window.innerHeight;
+  }
+  resizeCanvas();
+  window.onresize = resizeCanvas;
+
+  var drops = [];
+  for (var i = 0; i < 120; i++) {
+    drops.push({
+      x: Math.random() * window.innerWidth,
+      y: Math.random() * window.innerHeight,
+      speed: 4 + Math.random() * 6,
+      length: 10 + Math.random() * 20,
+      opacity: 0.3 + Math.random() * 0.5
     });
+  }
 
-    function toggleMusic() {
-      if (music.paused) {
-        music.play();
-        musicBtn.textContent = "\uD83C\uDFB5";
-        localStorage.setItem("musicOn", "1");
-      } else {
-        music.pause();
-        musicBtn.textContent = "\uD83D\uDD07";
-        localStorage.setItem("musicOn", "0");
+  function drawRain() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    for (var i = 0; i < drops.length; i++) {
+      var d = drops[i];
+      ctx.beginPath();
+      ctx.moveTo(d.x, d.y);
+      ctx.lineTo(d.x - 1, d.y + d.length);
+      ctx.strokeStyle = "rgba(180, 210, 255, " + d.opacity + ")";
+      ctx.lineWidth = 1;
+      ctx.stroke();
+      d.y += d.speed;
+      if (d.y > canvas.height) {
+        d.y = -d.length;
+        d.x = Math.random() * canvas.width;
       }
     }
-  </script>
+  }
+
+  function startRain() {
+    if (!rainInterval) {
+      rainInterval = setInterval(drawRain, 30);
+    }
+  }
+
+  function stopRain() {
+    clearInterval(rainInterval);
+    rainInterval = null;
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+  }
+
+  /* Auto-start rain if dark mode already on */
+  if (document.body.classList.contains("dark-mode")) { startRain(); }
+
+  /* ── MUSIC ── */
+  var music    = document.getElementById("bg-music");
+  var musicBtn = document.getElementById("music-toggle");
+  music.volume = 0.4;
+
+  music.addEventListener("canplay", function() {
+    var savedTime = parseFloat(localStorage.getItem("musicTime") || "0");
+    if (savedTime > 0) { music.currentTime = savedTime; }
+    if (localStorage.getItem("musicOn") === "1") {
+      music.play().then(function() {
+        musicBtn.textContent = "\uD83C\uDFB5";
+      }).catch(function() {
+        musicBtn.textContent = "\uD83D\uDD07";
+      });
+    } else {
+      musicBtn.textContent = "\uD83D\uDD07";
+    }
+  }, { once: true });
+
+  window.addEventListener("beforeunload", function() {
+    localStorage.setItem("musicTime", music.currentTime);
+    localStorage.setItem("musicOn",   music.paused ? "0" : "1");
+  });
+
+  function toggleMusic() {
+    if (music.paused) {
+      music.play();
+      musicBtn.textContent = "\uD83C\uDFB5";
+      localStorage.setItem("musicOn", "1");
+    } else {
+      music.pause();
+      musicBtn.textContent = "\uD83D\uDD07";
+      localStorage.setItem("musicOn", "0");
+    }
+  }
+</script>
 
 </body>
 </html>
