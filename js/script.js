@@ -4,7 +4,7 @@
    ============================================================= */
 
 /* ── CLICK SOUND EFFECT ── */
-var clickSound = new Audio("audio/mambo.mp3");
+var clickSound = new Audio("audio/00018.mp3");
 clickSound.volume = 0.6;
 
 /* Attach click sound to all interactive elements:
@@ -33,10 +33,10 @@ document.addEventListener("click", function (e) {
 });
 
 
-/* ── DROPDOWN SOUND EFFECT ── */
-/* Plays wow.mp3 ONLY when clicking a nav item that has a dropdown submenu */
-var dropdownSound = new Audio("audio/wow.mp3");
-dropdownSound.volume = 0.7;
+/* ── BACK TO TOP SOUND EFFECT ── */
+/* Plays wow.mp3 ONLY when clicking a "Back to Top" link */
+var backTopSound = new Audio("audio/wow.mp3");
+backTopSound.volume = 0.7;
 
 document.addEventListener("click", function (e) {
   var target = e.target;
@@ -45,16 +45,14 @@ document.addEventListener("click", function (e) {
   var clickedLink = (target.tagName === "A") ? target : (target.closest && target.closest("a"));
   if (!clickedLink) return;
 
-  /* Check if this <a> is a direct child of a nav <li> that contains a submenu <ul> */
-  var parentLi = clickedLink.parentElement;
-  if (
-    parentLi &&
-    parentLi.tagName === "LI" &&
-    parentLi.closest("#nav-list") &&          /* must be inside the main nav */
-    parentLi.querySelector("ul") !== null      /* must have a dropdown submenu */
-  ) {
-    dropdownSound.currentTime = 0;
-    dropdownSound.play().catch(function () {
+  /* Match by class "back-top" OR href="#top" — covers all Back to Top buttons */
+  var isBackToTop =
+    clickedLink.classList.contains("back-top") ||
+    clickedLink.getAttribute("href") === "#top";
+
+  if (isBackToTop) {
+    backTopSound.currentTime = 0;
+    backTopSound.play().catch(function () {
       /* Silently ignore if browser blocks autoplay */
     });
   }
