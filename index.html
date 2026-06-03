@@ -344,6 +344,20 @@
       localStorage.setItem("musicOn", "0");
     }
   }
+
+  // Load the sound once
+const clickSound = new Audio('audio/00018.mp3'); // adjust path as needed
+clickSound.volume = 0.6; // optional: adjust volume 0.0–1.0
+
+function playClick() {
+  clickSound.currentTime = 0; // rewind so rapid clicks work
+  clickSound.play().catch(() => {}); // catch blocks autoplay errors silently
+}
+
+// Apply to all action buttons — adjust selector to match yours
+document.querySelectorAll('.btn-secondary, a.back-top, #music-toggle, #dark-toggle')
+  .forEach(btn => btn.addEventListener('click', playClick));
+  
 </script>
   
 </body>
