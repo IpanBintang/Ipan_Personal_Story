@@ -33,6 +33,34 @@ document.addEventListener("click", function (e) {
 });
 
 
+/* ── DROPDOWN SOUND EFFECT ── */
+/* Plays wow.mp3 ONLY when clicking a nav item that has a dropdown submenu */
+var dropdownSound = new Audio("audio/wow.mp3");
+dropdownSound.volume = 0.7;
+
+document.addEventListener("click", function (e) {
+  var target = e.target;
+
+  /* Walk up to find the closest <a> that was clicked */
+  var clickedLink = (target.tagName === "A") ? target : (target.closest && target.closest("a"));
+  if (!clickedLink) return;
+
+  /* Check if this <a> is a direct child of a nav <li> that contains a submenu <ul> */
+  var parentLi = clickedLink.parentElement;
+  if (
+    parentLi &&
+    parentLi.tagName === "LI" &&
+    parentLi.closest("#nav-list") &&          /* must be inside the main nav */
+    parentLi.querySelector("ul") !== null      /* must have a dropdown submenu */
+  ) {
+    dropdownSound.currentTime = 0;
+    dropdownSound.play().catch(function () {
+      /* Silently ignore if browser blocks autoplay */
+    });
+  }
+});
+
+
 /* ── DARK MODE ── */
 function toggleDark() {
   var isDark = document.body.classList.toggle("dark-mode");
