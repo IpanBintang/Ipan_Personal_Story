@@ -4,7 +4,7 @@
    ============================================================= */
 
 /* ── CLICK SOUND EFFECT ── */
-var clickSound = new Audio("audio/00018.mp3");
+var clickSound = new Audio("audio/mambo.mp3");
 clickSound.volume = 0.6;
 
 /* Attach click sound to all interactive elements:
