@@ -153,7 +153,7 @@ if (document.body.classList.contains("dark-mode")) { startRain(); }
 
 /* Image paths for the music toggle button
    Replace these filenames with your actual image filenames */
-var MUSIC_ON_ICON  = "images/sound.tif";      /* playing  */
+var MUSIC_ON_ICON  = "images/sound.png";      /* playing  */
 var MUSIC_OFF_ICON = "images/sound-off.png";  /* paused — use same file if you only have one */
 
 var music     = document.getElementById("bg-music");
@@ -199,3 +199,8 @@ function toggleMusic() {
     localStorage.setItem("musicOn", "0");
   }
 }
+
+/* ── FIX: set correct icon on page load ── */
+document.addEventListener("DOMContentLoaded", function () {
+  setMusicIcon(false);
+});
