@@ -659,10 +659,14 @@ a.back-top:hover {
 
 /* ══════════════════════════════════════════════
    FLOATING BUTTONS
+   — Both buttons now use image icons instead of
+     emoji/text so JS textContent won't wipe them.
    ══════════════════════════════════════════════ */
-#dark-toggle {
+
+/* ── Shared base for both floating buttons ── */
+#dark-toggle,
+#music-toggle {
   position: fixed;
-  bottom: 84px;
   right: 24px;
   z-index: 9999;
   width: 46px;
@@ -670,49 +674,50 @@ a.back-top:hover {
   border-radius: 50%;
   border: 1.5px solid var(--border);
   background-color: var(--surface);
-  color: var(--ink);
-  font-size: 18px;
   cursor: pointer;
   box-shadow: 0 4px 16px rgba(0,0,0,0.1);
-  transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
+  transition: background-color 0.3s ease, border-color 0.3s ease,
+              transform 0.2s ease, box-shadow 0.2s ease;
   display: flex;
   align-items: center;
   justify-content: center;
+  padding: 0;
+  /* Hide any leftover text/emoji set in JS */
+  font-size: 0;
+  color: transparent;
 }
 
-#dark-toggle:hover {
+#dark-toggle  { bottom: 84px; }
+#music-toggle { bottom: 24px; }
+
+/* ── Image icons inside the buttons ── */
+#dark-toggle img,
+#music-toggle img {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+  display: block;
+  border-radius: 0;
+  border: none;
+  pointer-events: none;        /* clicks pass through to the button */
+  transition: filter 0.3s ease;
+}
+
+/* ── Hover state ── */
+#dark-toggle:hover,
+#music-toggle:hover {
   background-color: var(--accent);
   border-color: var(--accent);
-  color: #FFFFFF;
   transform: scale(1.08);
   box-shadow: 0 8px 24px rgba(200,53,42,0.25);
 }
 
-/* ── FLOATING MUSIC BUTTON (image version) ── */
-#music-toggle {
-  position: fixed;
-  bottom: 24px;
-  right: 24px;
-  z-index: 9999;
-  width: 46px;
-  height: 46px;
-  border-radius: 50%;
-  border: 1.5px solid var(--border);
-  background-color: var(--surface);
-
-  /* Replace the emoji with your image */
-  background-image: url('../images/sound.png');
-  background-size: 60%;          /* shrink so it doesn't bleed to the edges */
-  background-repeat: no-repeat;
-  background-position: center;
-
-  color: transparent;            /* hide any leftover text/emoji */
-  font-size: 0;
-
-  cursor: pointer;
-  box-shadow: 0 4px 16px rgba(0,0,0,0.1);
-  transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
+/* Invert icon to white on hover so it stays visible on the red bg */
+#dark-toggle:hover img,
+#music-toggle:hover img {
+  filter: brightness(0) invert(1);
 }
+
 /* ── RAIN CANVAS ── */
 #rain-canvas {
   position: fixed;
@@ -854,21 +859,31 @@ body.dark-mode a.back-top:hover {
   color: #111111;
 }
 
-body.dark-mode #dark-toggle {
-  background-color: #252521;
-  border-color: rgba(255,255,255,0.1);
-  color: var(--ink);
-}
+/* Dark mode floating buttons */
+body.dark-mode #dark-toggle,
 body.dark-mode #music-toggle {
   background-color: #252521;
   border-color: rgba(255,255,255,0.1);
-  color: var(--ink);
 }
+
+/* In dark mode, invert icons so they show up on the dark button bg */
+body.dark-mode #dark-toggle img,
+body.dark-mode #music-toggle img {
+  filter: brightness(0) invert(1);
+}
+
+/* On hover in dark mode, use gold instead of red */
 body.dark-mode #dark-toggle:hover,
 body.dark-mode #music-toggle:hover {
   background-color: var(--gold);
   border-color: var(--gold);
-  color: #111111;
+  box-shadow: 0 8px 24px rgba(240,224,64,0.2);
+}
+
+/* Keep icon dark against the gold hover background */
+body.dark-mode #dark-toggle:hover img,
+body.dark-mode #music-toggle:hover img {
+  filter: brightness(0);
 }
 
 body.dark-mode #disclaimer {
