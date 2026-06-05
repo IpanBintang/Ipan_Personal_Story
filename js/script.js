@@ -60,17 +60,35 @@ document.addEventListener("click", function (e) {
 
 
 /* ── DARK MODE ── */
+
+/* Image paths for the dark-mode toggle button
+   Replace these filenames with your actual image filenames */
+var DARK_ICON  = "images/moon.png";   /* shown in light mode → click to go dark */
+var LIGHT_ICON = "images/sun.png";    /* shown in dark mode  → click to go light */
+
+var darkBtn  = document.getElementById("dark-toggle");
+var darkIcon = document.getElementById("dark-icon");
+
 function toggleDark() {
   var isDark = document.body.classList.toggle("dark-mode");
   localStorage.setItem("darkMode", isDark ? "1" : "0");
-  document.getElementById("dark-toggle").textContent = isDark ? "\u2600\uFE0F" : "\uD83C\uDF19";
+
+  /* Swap the button image instead of setting textContent */
+  darkIcon.src = isDark ? LIGHT_ICON : DARK_ICON;
+  darkIcon.alt = isDark ? "Switch to light mode" : "Switch to dark mode";
+
   if (isDark) { startRain(); } else { stopRain(); }
 }
 
 /* Apply saved dark mode on page load */
 if (localStorage.getItem("darkMode") === "1") {
   document.body.classList.add("dark-mode");
-  document.getElementById("dark-toggle").textContent = "\u2600\uFE0F";
+  darkIcon.src = LIGHT_ICON;
+  darkIcon.alt = "Switch to light mode";
+  /* Rain will be started below after the rain setup */
+} else {
+  darkIcon.src = DARK_ICON;
+  darkIcon.alt = "Switch to dark mode";
 }
 
 
@@ -132,9 +150,22 @@ if (document.body.classList.contains("dark-mode")) { startRain(); }
 
 
 /* ── BACKGROUND MUSIC ── */
-var music    = document.getElementById("bg-music");
-var musicBtn = document.getElementById("music-toggle");
-music.volume = 0.4;
+
+/* Image paths for the music toggle button
+   Replace these filenames with your actual image filenames */
+var MUSIC_ON_ICON  = "images/sound.png";      /* playing  */
+var MUSIC_OFF_ICON = "images/sound-off.png";  /* paused — use same file if you only have one */
+
+var music     = document.getElementById("bg-music");
+var musicBtn  = document.getElementById("music-toggle");
+var musicIcon = document.getElementById("music-icon");
+music.volume  = 0.4;
+
+function setMusicIcon(isPlaying) {
+  /* Swap the button image instead of setting textContent */
+  musicIcon.src = isPlaying ? MUSIC_ON_ICON : MUSIC_OFF_ICON;
+  musicIcon.alt = isPlaying ? "Pause music" : "Play music";
+}
 
 music.addEventListener("canplay", function () {
   var savedTime = parseFloat(localStorage.getItem("musicTime") || "0");
@@ -142,12 +173,12 @@ music.addEventListener("canplay", function () {
 
   if (localStorage.getItem("musicOn") === "1") {
     music.play().then(function () {
-      musicBtn.textContent = "\uD83C\uDFB5";
+      setMusicIcon(true);
     }).catch(function () {
-      musicBtn.textContent = "\uD83D\uDD07";
+      setMusicIcon(false);
     });
   } else {
-    musicBtn.textContent = "\uD83D\uDD07";
+    setMusicIcon(false);
   }
 }, { once: true });
 
@@ -160,11 +191,11 @@ window.addEventListener("beforeunload", function () {
 function toggleMusic() {
   if (music.paused) {
     music.play();
-    musicBtn.textContent = "\uD83C\uDFB5";
+    setMusicIcon(true);
     localStorage.setItem("musicOn", "1");
   } else {
     music.pause();
-    musicBtn.textContent = "\uD83D\uDD07";
+    setMusicIcon(false);
     localStorage.setItem("musicOn", "0");
   }
 }
