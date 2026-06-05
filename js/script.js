@@ -188,28 +188,37 @@ window.addEventListener("beforeunload", function () {
   localStorage.setItem("musicOn",   music.paused ? "0" : "1");
 });
 
-function toggleMusic() {
-  if (music.readyState < 2) {
-    /* Audio not ready yet — wait for it then play */
-    music.addEventListener("canplay", function () {
-      music.play().then(function () {
-        setMusicIcon(true);
-        localStorage.setItem("musicOn", "1");
-      }).catch(function (err) {
-        console.log("Music blocked:", err);
-        setMusicIcon(false);
-      });
-    }, { once: true });
-    return;
-  }
+/* ── BACKGROUND MUSIC ── */
+var MUSIC_ON_ICON  = "images/sound.png";
+var MUSIC_OFF_ICON = "images/sound-off.png";
 
+var music     = document.getElementById("bg-music");
+var musicIcon = document.getElementById("music-icon");
+music.volume  = 0.4;
+
+var musicReady = false;
+
+function setMusicIcon(isPlaying) {
+  musicIcon.src = isPlaying ? MUSIC_ON_ICON : MUSIC_OFF_ICON;
+  musicIcon.alt = isPlaying ? "Pause music" : "Play music";
+}
+
+music.addEventListener("canplaythrough", function () {
+  musicReady = true;
+}, { once: true });
+
+window.addEventListener("beforeunload", function () {
+  localStorage.setItem("musicTime", music.currentTime);
+  localStorage.setItem("musicOn", music.paused ? "0" : "1");
+});
+
+function toggleMusic() {
   if (music.paused) {
     music.play().then(function () {
       setMusicIcon(true);
       localStorage.setItem("musicOn", "1");
     }).catch(function (err) {
       console.log("Music blocked:", err);
-      setMusicIcon(false);
     });
   } else {
     music.pause();
@@ -217,6 +226,9 @@ function toggleMusic() {
     localStorage.setItem("musicOn", "0");
   }
 }
+
+/* Set icon on load */
+setMusicIcon(false);
 /* ── FIX: set correct icon on page load ── */
 document.addEventListener("DOMContentLoaded", function () {
   setMusicIcon(false);
