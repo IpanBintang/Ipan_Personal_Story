@@ -190,9 +190,13 @@ window.addEventListener("beforeunload", function () {
 
 function toggleMusic() {
   if (music.paused) {
-    music.play();
-    setMusicIcon(true);
-    localStorage.setItem("musicOn", "1");
+    music.play().then(function () {
+      setMusicIcon(true);
+      localStorage.setItem("musicOn", "1");
+    }).catch(function (err) {
+      console.log("Music blocked:", err);
+      setMusicIcon(false);
+    });
   } else {
     music.pause();
     setMusicIcon(false);
