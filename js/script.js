@@ -189,6 +189,20 @@ window.addEventListener("beforeunload", function () {
 });
 
 function toggleMusic() {
+  if (music.readyState < 2) {
+    /* Audio not ready yet — wait for it then play */
+    music.addEventListener("canplay", function () {
+      music.play().then(function () {
+        setMusicIcon(true);
+        localStorage.setItem("musicOn", "1");
+      }).catch(function (err) {
+        console.log("Music blocked:", err);
+        setMusicIcon(false);
+      });
+    }, { once: true });
+    return;
+  }
+
   if (music.paused) {
     music.play().then(function () {
       setMusicIcon(true);
@@ -203,7 +217,6 @@ function toggleMusic() {
     localStorage.setItem("musicOn", "0");
   }
 }
-
 /* ── FIX: set correct icon on page load ── */
 document.addEventListener("DOMContentLoaded", function () {
   setMusicIcon(false);
