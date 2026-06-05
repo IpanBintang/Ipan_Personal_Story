@@ -14,13 +14,11 @@ document.addEventListener("click", function (e) {
     target.tagName === "BUTTON" ||
     target.closest("a") ||
     target.closest("button");
-  var isMusicBtn = target.id === "music-toggle" || (target.closest && target.closest("#music-toggle"));
-  if (isClickable && !isMusicBtn) {
+  if (isClickable) {
     clickSound.currentTime = 0;
     clickSound.play().catch(function () {});
   }
 });
-
 
 /* ── BACK TO TOP SOUND EFFECT ── */
 var backTopSound = new Audio("audio/wow.mp3");
