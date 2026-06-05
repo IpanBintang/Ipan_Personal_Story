@@ -7,64 +7,42 @@
 var clickSound = new Audio("audio/00018.mp3");
 clickSound.volume = 0.6;
 
-/* Attach click sound to all interactive elements:
-   links, buttons, and nav items */
 document.addEventListener("click", function (e) {
   var target = e.target;
-
-  /* Check if the clicked element (or its parent) is a link or button */
   var isClickable =
     target.tagName === "A" ||
     target.tagName === "BUTTON" ||
     target.closest("a") ||
     target.closest("button");
-
-  /* Don't play click sound when toggling the music button itself,
-     to avoid the sound overlapping with music state change */
   var isMusicBtn = target.id === "music-toggle" || (target.closest && target.closest("#music-toggle"));
-
   if (isClickable && !isMusicBtn) {
-    /* Reset so rapid clicks always play from start */
     clickSound.currentTime = 0;
-    clickSound.play().catch(function () {
-      /* Silently ignore if browser blocks autoplay */
-    });
+    clickSound.play().catch(function () {});
   }
 });
 
 
 /* ── BACK TO TOP SOUND EFFECT ── */
-/* Plays wow.mp3 ONLY when clicking a "Back to Top" link */
 var backTopSound = new Audio("audio/wow.mp3");
 backTopSound.volume = 0.7;
 
 document.addEventListener("click", function (e) {
   var target = e.target;
-
-  /* Walk up to find the closest <a> that was clicked */
   var clickedLink = (target.tagName === "A") ? target : (target.closest && target.closest("a"));
   if (!clickedLink) return;
-
-  /* Match by class "back-top" OR href="#top" — covers all Back to Top buttons */
   var isBackToTop =
     clickedLink.classList.contains("back-top") ||
     clickedLink.getAttribute("href") === "#top";
-
   if (isBackToTop) {
     backTopSound.currentTime = 0;
-    backTopSound.play().catch(function () {
-      /* Silently ignore if browser blocks autoplay */
-    });
+    backTopSound.play().catch(function () {});
   }
 });
 
 
 /* ── DARK MODE ── */
-
-/* Image paths for the dark-mode toggle button
-   Replace these filenames with your actual image filenames */
-var DARK_ICON  = "images/moon.png";   /* shown in light mode → click to go dark */
-var LIGHT_ICON = "images/sun.png";    /* shown in dark mode  → click to go light */
+var DARK_ICON  = "images/moon.png";
+var LIGHT_ICON = "images/sun.png";
 
 var darkBtn  = document.getElementById("dark-toggle");
 var darkIcon = document.getElementById("dark-icon");
@@ -72,20 +50,15 @@ var darkIcon = document.getElementById("dark-icon");
 function toggleDark() {
   var isDark = document.body.classList.toggle("dark-mode");
   localStorage.setItem("darkMode", isDark ? "1" : "0");
-
-  /* Swap the button image instead of setting textContent */
   darkIcon.src = isDark ? LIGHT_ICON : DARK_ICON;
   darkIcon.alt = isDark ? "Switch to light mode" : "Switch to dark mode";
-
   if (isDark) { startRain(); } else { stopRain(); }
 }
 
-/* Apply saved dark mode on page load */
 if (localStorage.getItem("darkMode") === "1") {
   document.body.classList.add("dark-mode");
   darkIcon.src = LIGHT_ICON;
   darkIcon.alt = "Switch to light mode";
-  /* Rain will be started below after the rain setup */
 } else {
   darkIcon.src = DARK_ICON;
   darkIcon.alt = "Switch to dark mode";
@@ -134,9 +107,7 @@ function drawRain() {
 }
 
 function startRain() {
-  if (!rainInterval) {
-    rainInterval = setInterval(drawRain, 30);
-  }
+  if (!rainInterval) { rainInterval = setInterval(drawRain, 30); }
 }
 
 function stopRain() {
@@ -145,48 +116,8 @@ function stopRain() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
 }
 
-/* Auto-start rain if dark mode is already active */
 if (document.body.classList.contains("dark-mode")) { startRain(); }
 
-
-/* ── BACKGROUND MUSIC ── */
-
-/* Image paths for the music toggle button
-   Replace these filenames with your actual image filenames */
-var MUSIC_ON_ICON  = "images/sound.png";      /* playing  */
-var MUSIC_OFF_ICON = "images/sound-off.png";  /* paused — use same file if you only have one */
-
-var music     = document.getElementById("bg-music");
-var musicBtn  = document.getElementById("music-toggle");
-var musicIcon = document.getElementById("music-icon");
-music.volume  = 0.4;
-
-function setMusicIcon(isPlaying) {
-  /* Swap the button image instead of setting textContent */
-  musicIcon.src = isPlaying ? MUSIC_ON_ICON : MUSIC_OFF_ICON;
-  musicIcon.alt = isPlaying ? "Pause music" : "Play music";
-}
-
-music.addEventListener("canplay", function () {
-  var savedTime = parseFloat(localStorage.getItem("musicTime") || "0");
-  if (savedTime > 0) { music.currentTime = savedTime; }
-
-  if (localStorage.getItem("musicOn") === "1") {
-    music.play().then(function () {
-      setMusicIcon(true);
-    }).catch(function () {
-      setMusicIcon(false);
-    });
-  } else {
-    setMusicIcon(false);
-  }
-}, { once: true });
-
-/* Save music position and state when leaving the page */
-window.addEventListener("beforeunload", function () {
-  localStorage.setItem("musicTime", music.currentTime);
-  localStorage.setItem("musicOn",   music.paused ? "0" : "1");
-});
 
 /* ── BACKGROUND MUSIC ── */
 var MUSIC_ON_ICON  = "images/sound.png";
@@ -196,21 +127,10 @@ var music     = document.getElementById("bg-music");
 var musicIcon = document.getElementById("music-icon");
 music.volume  = 0.4;
 
-var musicReady = false;
-
 function setMusicIcon(isPlaying) {
   musicIcon.src = isPlaying ? MUSIC_ON_ICON : MUSIC_OFF_ICON;
   musicIcon.alt = isPlaying ? "Pause music" : "Play music";
 }
-
-music.addEventListener("canplaythrough", function () {
-  musicReady = true;
-}, { once: true });
-
-window.addEventListener("beforeunload", function () {
-  localStorage.setItem("musicTime", music.currentTime);
-  localStorage.setItem("musicOn", music.paused ? "0" : "1");
-});
 
 function toggleMusic() {
   if (music.paused) {
@@ -227,9 +147,9 @@ function toggleMusic() {
   }
 }
 
-/* Set icon on load */
-setMusicIcon(false);
-/* ── FIX: set correct icon on page load ── */
-document.addEventListener("DOMContentLoaded", function () {
-  setMusicIcon(false);
+window.addEventListener("beforeunload", function () {
+  localStorage.setItem("musicTime", music.currentTime);
+  localStorage.setItem("musicOn", music.paused ? "0" : "1");
 });
+
+setMusicIcon(false);
