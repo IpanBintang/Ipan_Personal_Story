@@ -20,6 +20,7 @@ document.addEventListener("click", function (e) {
   }
 });
 
+
 /* ── BACK TO TOP SOUND EFFECT ── */
 var backTopSound = new Audio("audio/wow.mp3");
 backTopSound.volume = 0.7;
@@ -130,6 +131,29 @@ function setMusicIcon(isPlaying) {
   musicIcon.alt = isPlaying ? "Pause music" : "Play music";
 }
 
+/* Restore music position and auto-resume if it was playing */
+var savedTime = parseFloat(localStorage.getItem("musicTime") || "0");
+var wasPlaying = localStorage.getItem("musicOn") === "1";
+
+music.addEventListener("canplay", function () {
+  if (savedTime > 0) { music.currentTime = savedTime; }
+  if (wasPlaying) {
+    music.play().then(function () {
+      setMusicIcon(true);
+    }).catch(function () {
+      setMusicIcon(false);
+    });
+  } else {
+    setMusicIcon(false);
+  }
+}, { once: true });
+
+/* Save position and state before leaving page */
+window.addEventListener("beforeunload", function () {
+  localStorage.setItem("musicTime", music.currentTime);
+  localStorage.setItem("musicOn", music.paused ? "0" : "1");
+});
+
 function toggleMusic() {
   if (music.paused) {
     music.play().then(function () {
@@ -144,10 +168,5 @@ function toggleMusic() {
     localStorage.setItem("musicOn", "0");
   }
 }
-
-window.addEventListener("beforeunload", function () {
-  localStorage.setItem("musicTime", music.currentTime);
-  localStorage.setItem("musicOn", music.paused ? "0" : "1");
-});
 
 setMusicIcon(false);
