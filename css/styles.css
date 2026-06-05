@@ -682,8 +682,8 @@ a.back-top:hover {
 
 #dark-toggle img,
 #music-toggle img {
-  width: 48px;
-  height: 48px;
+  width: 64px;
+  height: 64px;
   object-fit: contain;
   display: block;
   border-radius: 0;
