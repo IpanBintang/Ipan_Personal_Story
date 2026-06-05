@@ -66,7 +66,6 @@ body {
   font-weight: 400;
   line-height: 1.75;
   background-color: var(--bg);
-  /* Light mode background image (from persona5) */
   background-image: url('../images/background_2.jpg');
   background-attachment: fixed;
   background-size: cover;
@@ -659,63 +658,44 @@ a.back-top:hover {
 
 /* ══════════════════════════════════════════════
    FLOATING BUTTONS
-   — Both buttons now use image icons instead of
-     emoji/text so JS textContent won't wipe them.
+   — Raw image buttons, no circle/background
    ══════════════════════════════════════════════ */
-
-/* ── Shared base for both floating buttons ── */
 #dark-toggle,
 #music-toggle {
   position: fixed;
   right: 24px;
   z-index: 9999;
-  width: 46px;
-  height: 46px;
-  border-radius: 50%;
-  border: 1.5px solid var(--border);
-  background-color: var(--surface);
-  cursor: pointer;
-  box-shadow: 0 4px 16px rgba(0,0,0,0.1);
-  transition: background-color 0.3s ease, border-color 0.3s ease,
-              transform 0.2s ease, box-shadow 0.2s ease;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  background: none;
+  border: none;
   padding: 0;
-  /* Hide any leftover text/emoji set in JS */
-  font-size: 0;
-  color: transparent;
+  margin: 0;
+  cursor: pointer;
+  box-shadow: none;
+  outline: none;
+  display: block;
+  -webkit-appearance: none;
+  appearance: none;
 }
 
 #dark-toggle  { bottom: 84px; }
 #music-toggle { bottom: 24px; }
 
-/* ── Image icons inside the buttons ── */
 #dark-toggle img,
 #music-toggle img {
-  width: 24px;
-  height: 24px;
+  width: 48px;
+  height: 48px;
   object-fit: contain;
   display: block;
   border-radius: 0;
   border: none;
-  pointer-events: none;        /* clicks pass through to the button */
-  transition: filter 0.3s ease;
+  pointer-events: none;
+  transition: transform 0.2s ease, opacity 0.2s ease;
 }
 
-/* ── Hover state ── */
-#dark-toggle:hover,
-#music-toggle:hover {
-  background-color: var(--accent);
-  border-color: var(--accent);
-  transform: scale(1.08);
-  box-shadow: 0 8px 24px rgba(200,53,42,0.25);
-}
-
-/* Invert icon to white on hover so it stays visible on the red bg */
 #dark-toggle:hover img,
 #music-toggle:hover img {
-  filter: brightness(0) invert(1);
+  transform: scale(1.15);
+  opacity: 0.75;
 }
 
 /* ── RAIN CANVAS ── */
@@ -738,9 +718,6 @@ a.back-top:hover {
 
 /* ══════════════════════════════════════════════
    DARK MODE
-   — Clean variables from css_3
-   — Background image swap from persona5
-   — Gold accent (#f0e040) from persona5 dark palette
    ══════════════════════════════════════════════ */
 body.dark-mode {
   --bg:           #0E0E0E;
@@ -754,28 +731,18 @@ body.dark-mode {
   --gold:         #f0e040;
   --nav-bg:       #080808;
 
-  /* Dark mode background image (persona5 style) */
   background-image: url('../images/background_1.webp');
 }
 
 body.dark-mode .site-subtitle { color: var(--gold); }
 
-body.dark-mode #header {
-  border-bottom-color: var(--gold);
-}
-
-body.dark-mode #header::after {
-  background: var(--gold);
-}
+body.dark-mode #header::after { background: var(--gold); }
 
 body.dark-mode #navigation {
   border-bottom-color: rgba(255,255,255,0.05);
 }
 
-body.dark-mode #nav-list > li > a {
-  color: rgba(255,255,255,0.55);
-}
-
+body.dark-mode #nav-list > li > a { color: rgba(255,255,255,0.55); }
 body.dark-mode #nav-list > li:hover > a { color: #FFFFFF; }
 
 body.dark-mode #nav-list > li > ul {
@@ -786,13 +753,10 @@ body.dark-mode #nav-list > li > ul {
 body.dark-mode #nav-list > li > ul > li > a { color: rgba(255,255,255,0.5); }
 body.dark-mode #nav-list > li > ul > li > a:hover { color: var(--gold); }
 
-body.dark-mode #sidebar {
-  background-color: #1a1a1a;
-}
-
-body.dark-mode .sidebar-box { background-color: #1F1F1D; }
+body.dark-mode #sidebar        { background-color: #1a1a1a; }
+body.dark-mode .sidebar-box    { background-color: #1F1F1D; }
 body.dark-mode .sidebar-box h3 { color: var(--gold); }
-body.dark-mode .sidebar-box ul li a { color: var(--ink-2); }
+body.dark-mode .sidebar-box ul li a       { color: var(--ink-2); }
 body.dark-mode .sidebar-box ul li a:hover { color: var(--gold); }
 
 body.dark-mode #content { background-color: #111111; }
@@ -818,7 +782,7 @@ body.dark-mode .hobby-card:hover { border-color: rgba(229,69,58,0.3); box-shadow
 body.dark-mode .hobby-card h3 { color: var(--gold); }
 
 body.dark-mode .profile-box { background-color: #1F1F1D; }
-body.dark-mode blockquote { background-color: #1A1A18; color: var(--ink-2); }
+body.dark-mode blockquote   { background-color: #1A1A18; color: var(--ink-2); }
 
 body.dark-mode .announce-box {
   background-color: rgba(229,69,58,0.07);
@@ -827,17 +791,15 @@ body.dark-mode .announce-box {
 }
 body.dark-mode .announce-box strong { color: var(--gold); }
 
-body.dark-mode a { color: var(--accent); }
+body.dark-mode a         { color: var(--accent); }
 body.dark-mode a:visited { color: var(--accent-dark); }
-body.dark-mode a:hover { color: var(--gold); }
+body.dark-mode a:hover   { color: var(--gold); }
 
 body.dark-mode .text-accent { color: var(--gold); }
-body.dark-mode .text-muted { color: var(--muted); }
+body.dark-mode .text-muted  { color: var(--muted); }
 
-body.dark-mode img { border-color: #6e1212; }
-body.dark-mode img.thumbnail {
-  border-color: rgba(255,255,255,0.1);
-}
+body.dark-mode img               { border-color: #6e1212; }
+body.dark-mode img.thumbnail     { border-color: rgba(255,255,255,0.1); }
 body.dark-mode img.thumbnail:hover { box-shadow: 0 8px 24px rgba(0,0,0,0.5); }
 
 body.dark-mode .btn-secondary {
@@ -859,43 +821,16 @@ body.dark-mode a.back-top:hover {
   color: #111111;
 }
 
-/* Dark mode floating buttons */
-body.dark-mode #dark-toggle,
-body.dark-mode #music-toggle {
-  background-color: #252521;
-  border-color: rgba(255,255,255,0.1);
-}
-
-/* In dark mode, invert icons so they show up on the dark button bg */
-body.dark-mode #dark-toggle img,
-body.dark-mode #music-toggle img {
-  filter: brightness(0) invert(1);
-}
-
-/* On hover in dark mode, use gold instead of red */
-body.dark-mode #dark-toggle:hover,
-body.dark-mode #music-toggle:hover {
-  background-color: var(--gold);
-  border-color: var(--gold);
-  box-shadow: 0 8px 24px rgba(240,224,64,0.2);
-}
-
-/* Keep icon dark against the gold hover background */
-body.dark-mode #dark-toggle:hover img,
-body.dark-mode #music-toggle:hover img {
-  filter: brightness(0);
-}
-
 body.dark-mode #disclaimer {
   background-color: #0a0a0a;
   border-top-color: rgba(255,255,255,0.05);
 }
-body.dark-mode #disclaimer a { color: var(--gold); }
+body.dark-mode #disclaimer a       { color: var(--gold); }
 body.dark-mode #disclaimer a:hover { color: #FFFFFF; }
 
 body.dark-mode table.gallery-table td { background-color: #1F1F1D; }
 
-body.dark-mode hr { border-top-color: #333333; }
+body.dark-mode hr       { border-top-color: #333333; }
 body.dark-mode hr.thick { border-top-color: var(--accent); }
 
 body.dark-mode ::selection { background: rgba(229,69,58,0.2); color: var(--ink); }
