@@ -79,11 +79,10 @@
 </head>
 <body>
 
-  <!-- BACKGROUND MUSIC -->
-  <audio id="bg-music" loop="loop">
-    <source src="audio/bg2.mp3" type="audio/mpeg" />
-    Your browser does not support the audio element.
-  </audio>
+ <!-- BACKGROUND MUSIC -->
+ <!-- AFTER — fixed -->
+<audio id="bg-music" src="audio/bg.mp3" loop="loop" preload="auto">
+</audio>
 
 <div class="page-wrapper">
 
@@ -406,11 +405,16 @@
 
 </div>
 
-  <!-- DARK MODE BUTTON -->
-  <button id="dark-toggle" onclick="toggleDark()" title="Toggle Dark Mode">&#127769;</button>
+<!-- DARK MODE BUTTON -->
+<button id="dark-toggle" onclick="toggleDark()" title="Toggle Dark Mode">
+  <img id="dark-icon" src="images/moon.png" alt="Switch to dark mode" />
+</button>
 
-  <!-- MUSIC BUTTON -->
-  <button id="music-toggle" onclick="toggleMusic()" title="Toggle Music">&#128264;</button>
+<!-- MUSIC BUTTON -->
+<button id="music-toggle" onclick="toggleMusic()" title="Toggle Music">
+  <img id="music-icon" src="images/sound.png" alt="Play music" />
+</button>
+  
 <!-- RAIN CANVAS -->
 <canvas id="rain-canvas"></canvas>
 
