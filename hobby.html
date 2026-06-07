@@ -9,18 +9,6 @@
   <meta name="author" content="Muhamad Irfan" />
   <title>Hobby | My Personal Website</title>
   <link rel="stylesheet" type="text/css" href="css/styles.css" />
-  <style type="text/css">
-    #header.page-hero{position:relative;height:120px;overflow:hidden;background:#0a0a0a;}
-    .hero-bg{position:absolute;inset:0;background:linear-gradient(135deg,#1a0000 0%,#0d0d0d 50%,#000820 100%);}
-    .hero-overlay{position:absolute;inset:0;background:rgba(0,0,0,0.35);}
-    .hero-content{position:absolute;inset:0;display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-ms-flex-align:center;align-items:center;padding:0 32px;gap:20px;}
-    .hero-logo{width:64px;height:64px;flex-shrink:0;opacity:0.9;}
-    .hero-text{display:flex;flex-direction:column;gap:2px;}
-    .hero-title{font-family:Georgia,'Times New Roman',serif;font-size:42px;font-weight:700;color:rgba(255,255,255,0.07);letter-spacing:-1px;line-height:1;-webkit-text-stroke:1.2px rgba(255,255,255,0.5);margin:0;}
-    .hero-title .accent{color:rgba(212,31,31,0.1);-webkit-text-stroke:1.2px rgba(212,31,31,0.75);}
-    .hero-sub{font-family:Arial,Helvetica,sans-serif;font-size:10px;letter-spacing:4px;text-transform:uppercase;color:rgba(255,255,255,0.4);margin:4px 0 0;padding-left:2px;}
-    body.dark-mode #header.page-hero{background:#050505;}
-  </style>
 </head>
 <body>
 
@@ -31,16 +19,20 @@
 <div class="page-wrapper">
 
   <!-- HEADER / BANNER -->
-  <div id="header" class="page-hero">
-    <div class="hero-bg"></div>
-    <div class="hero-overlay"></div>
-    <div class="hero-content">
-      <img src="images/logo.png" alt="Logo" class="hero-logo" />
-      <div class="hero-text">
-        <p class="hero-title">My <span class="accent">Hobbies</span></p>
-        <p class="hero-sub">&#9670; Things I Love To Do &#9670;</p>
-      </div>
-    </div>
+  <div id="header">
+    <table cellpadding="0" cellspacing="0" border="0">
+      <tr>
+        <td class="banner-left">
+          <img src="images/logo.png" alt="Logo" width="80" height="80" />
+        </td>
+        <td class="banner-center">
+          <p class="site-title">Your Name</p>
+          <p class="site-subtitle">&#9670; My Personal Website &#9670;</p>
+        </td>
+        <td class="banner-right">
+        </td>
+      </tr>
+    </table>
   </div>
 
   <!-- NAVIGATION -->
@@ -293,6 +285,7 @@
   <!-- RAIN CANVAS -->
 <canvas id="rain-canvas"></canvas>
 
+  <!-- JAVA SCRIPT -->
 <script type="text/javascript" src="js/script.js"></script>
 
 </body>
