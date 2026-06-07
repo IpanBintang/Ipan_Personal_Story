@@ -17,15 +17,16 @@
 
 #header.gal-header-hero {
   position: relative;
-  /* Same natural height as the original header — let content define it */
   height: auto;
   min-height: 0;
   display: flex;
-  align-items: center;        /* vertically center content like original */
+  align-items: center;
   overflow: hidden;
   padding: 0;
-  /* Keep the red bottom line from styles.css */
-  border-bottom: none;        /* ::after handles the line below */
+  border-bottom: none;
+  /* THE FIX — styles.css sets background-color: var(--nav-bg) = solid #111111
+     which completely covers the photo. Must override to transparent. */
+  background-color: transparent !important;
 }
 
 /* KEEP the red accent line — re-enable it */
