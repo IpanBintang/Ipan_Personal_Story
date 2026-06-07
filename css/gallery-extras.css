@@ -10,29 +10,46 @@
    HEADER-HERO  (replaces the old #header banner)
    ══════════════════════════════════════════════ */
 
-/* Override the default #header so it becomes a full cinematic banner */
+/* ══════════════════════════════════════════════
+   HEADER-HERO  (compact, same height as original
+   header, with photo peeking through + red line)
+   ══════════════════════════════════════════════ */
+
 #header.gal-header-hero {
   position: relative;
-  height: 68vh;
-  min-height: 420px;
+  /* Same natural height as the original header — let content define it */
+  height: auto;
+  min-height: 0;
   display: flex;
-  align-items: flex-end;
+  align-items: center;        /* vertically center content like original */
   overflow: hidden;
-  padding: 0;        /* kill default header padding */
-  border-bottom: none;
+  padding: 0;
+  /* Keep the red bottom line from styles.css */
+  border-bottom: none;        /* ::after handles the line below */
 }
 
-/* Kill the red accent line from styles.css on this header */
-#header.gal-header-hero::after { display: none; }
+/* KEEP the red accent line — re-enable it */
+#header.gal-header-hero::after {
+  display: block !important;  /* overrides our earlier hide */
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--accent);
+  z-index: 20;
+}
 
-/* Background photo — change the url() to your own image */
+/* Background photo — semi-transparent so it's a subtle peek */
 .gal-header-bg {
   position: absolute;
   inset: 0;
   background-image: url('../images/photo1.jpg'); /* ← swap to your photo */
   background-size: cover;
   background-position: center top;
-  filter: brightness(0.38) saturate(0.60);
+  /* LOW brightness + high transparency = see-through cool look */
+  filter: brightness(0.22) saturate(0.5);
   animation: heroZoom 18s ease-in-out infinite alternate;
   transform-origin: center;
 }
@@ -42,25 +59,22 @@
   to   { transform: scale(1.06); }
 }
 
-/* Dark gradient so text is readable at the bottom */
+/* Thin dark overlay so text stays readable */
 .gal-header-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(
-    to bottom,
-    rgba(0,0,0,0.15) 0%,
-    transparent 30%,
-    rgba(0,0,0,0.55) 65%,
-    rgba(0,0,0,0.95) 100%
-  );
+  background: rgba(0,0,0,0.45);
+  z-index: 1;
 }
 
-/* Text content — sits bottom-left */
+/* Content row — mirrors the original banner-center layout */
 .gal-header-content {
   position: relative;
   z-index: 10;
-  padding: 0 48px 56px;
-  max-width: 860px;
+  padding: 28px 24px 36px 20px; /* same feel as original banner-center */
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 }
 
 .gal-eyebrow {
@@ -69,84 +83,46 @@
   letter-spacing: 5px;
   color: var(--accent);
   text-transform: uppercase;
-  margin-bottom: 12px;
+  margin-bottom: 8px;
 }
 
-/* The big "My Gallery" title */
+/* "My Gallery" — sized to match "Ipan Azmi" heading scale */
 .gal-header-title {
   font-family: var(--font-display);
-  font-size: clamp(52px, 8vw, 96px);
+  font-size: 52px;             /* matches .site-title font-size */
   font-weight: 600;
-  line-height: 1;
+  line-height: 1.1;
   color: #ffffff;
-  margin: 0 0 14px;
-  /* reset <p> margin/color from styles.css */
+  margin: 0 0 8px;
+  letter-spacing: -0.5px;
   text-align: left;
 }
 
+/* "Gallery" in red on its own line */
 .gal-header-title-accent {
   color: var(--accent);
-  display: block;
-  text-shadow: 0 0 60px rgba(200,53,42,0.45);
+  display: inline;             /* inline so "My Gallery" stays on one line */
+  text-shadow: 0 0 40px rgba(200,53,42,0.5);
 }
 
 .gal-header-sub {
-  font-size: 13px;
-  color: rgba(255,255,255,0.50);
-  letter-spacing: 2px;
-  margin-bottom: 18px;
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--accent);
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  margin: 0;
   text-align: left;
 }
 
-.gal-hero-count {
-  display: inline-flex;
-  align-items: center;
-  gap: 14px;
-  font-size: 10px;
-  letter-spacing: 3px;
-  text-transform: uppercase;
-  color: rgba(255,255,255,0.40);
-}
+/* Hide the count & scroll indicator — not needed in compact mode */
+.gal-hero-count  { display: none; }
+.gal-hero-scroll { display: none; }
 
-.gal-hero-count::before {
-  content: '';
-  display: block;
-  width: 32px;
-  height: 1px;
-  background: var(--accent);
-}
-
-/* Animated scroll indicator bottom-right */
-.gal-hero-scroll {
-  position: absolute;
-  bottom: 24px;
-  right: 36px;
-  z-index: 10;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 8px;
-  font-size: 9px;
-  letter-spacing: 3px;
-  text-transform: uppercase;
-  color: rgba(255,255,255,0.35);
-}
-
-.gal-hero-scroll-line {
-  width: 1px;
-  height: 50px;
-  background: linear-gradient(to bottom, var(--accent), transparent);
-  animation: scrollPulse 1.8s ease-in-out infinite;
-}
-
-@keyframes scrollPulse {
-  0%, 100% { opacity: 1;   transform: scaleY(1); }
-  50%       { opacity: 0.3; transform: scaleY(0.5); }
-}
-
-/* Dark mode tweak */
+/* Dark mode — slightly more transparent */
 body.dark-mode .gal-header-bg {
-  filter: brightness(0.30) saturate(0.5);
+  filter: brightness(0.15) saturate(0.4);
 }
 
 
