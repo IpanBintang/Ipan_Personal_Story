@@ -51,18 +51,25 @@ function toggleDark() {
   localStorage.setItem("darkMode", isDark ? "1" : "0");
   darkIcon.src = isDark ? LIGHT_ICON : DARK_ICON;
   darkIcon.alt = isDark ? "Switch to light mode" : "Switch to dark mode";
-  if (isDark) { startRain(); } else { stopRain(); }
+  if (isDark) {
+    startRain();
+    stopSunlight();
+  } else {
+    stopRain();
+    startSunlight();
+  }
 }
 
 if (localStorage.getItem("darkMode") === "1") {
   document.body.classList.add("dark-mode");
   darkIcon.src = LIGHT_ICON;
   darkIcon.alt = "Switch to light mode";
+  startRain();
 } else {
   darkIcon.src = DARK_ICON;
   darkIcon.alt = "Switch to dark mode";
+  startSunlight();
 }
-
 
 /* ── RAIN EFFECT ── */
 var rainInterval = null;
@@ -116,6 +123,87 @@ function stopRain() {
 }
 
 if (document.body.classList.contains("dark-mode")) { startRain(); }
+
+/* ── SUNLIGHT EFFECT ── */
+var sunCanvas = document.createElement("canvas");
+sunCanvas.id = "sun-canvas";
+sunCanvas.style.cssText = "position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:9997;";
+document.body.appendChild(sunCanvas);
+var sunCtx = sunCanvas.getContext("2d");
+var sunInterval = null;
+
+function resizeSunCanvas() {
+  sunCanvas.width  = window.innerWidth;
+  sunCanvas.height = window.innerHeight;
+}
+resizeSunCanvas();
+window.addEventListener("resize", resizeSunCanvas);
+
+var rays = [];
+for (var s = 0; s < 18; s++) {
+  rays.push({
+    angle:   Math.random() * Math.PI * 0.55 + Math.PI * 0.1,
+    length:  window.innerHeight * (0.5 + Math.random() * 0.7),
+    width:   18 + Math.random() * 60,
+    opacity: 0,
+    targetOpacity: 0.04 + Math.random() * 0.07,
+    speed:   0.003 + Math.random() * 0.005,
+    phase:   Math.random() * Math.PI * 2,
+    drift:   (Math.random() - 0.5) * 0.0004
+  });
+}
+
+var originX, originY;
+
+function drawSunlight() {
+  originX = sunCanvas.width * 0.92;
+  originY = sunCanvas.height * -0.05;
+  sunCtx.clearRect(0, 0, sunCanvas.width, sunCanvas.height);
+  var t = Date.now() * 0.001;
+
+  for (var i = 0; i < rays.length; i++) {
+    var r = rays[i];
+    r.opacity += (r.targetOpacity - r.opacity) * 0.02;
+    r.angle += r.drift;
+    var pulse = Math.sin(t * r.speed * 6 + r.phase) * 0.015;
+    var alpha = Math.max(0, r.opacity + pulse);
+
+    var halfW = r.width * 0.5;
+    var endX  = originX + Math.cos(r.angle) * r.length;
+    var endY  = originY + Math.sin(r.angle) * r.length;
+    var perpX = -Math.sin(r.angle);
+    var perpY =  Math.cos(r.angle);
+
+    sunCtx.beginPath();
+    sunCtx.moveTo(originX + perpX * 1,   originY + perpY * 1);
+    sunCtx.lineTo(originX - perpX * 1,   originY - perpY * 1);
+    sunCtx.lineTo(endX - perpX * halfW,  endY - perpY * halfW);
+    sunCtx.lineTo(endX + perpX * halfW,  endY + perpY * halfW);
+    sunCtx.closePath();
+    sunCtx.fillStyle = "rgba(255, 220, 100, " + alpha + ")";
+    sunCtx.fill();
+  }
+
+  /* soft glow at origin */
+  var glow = sunCtx.createRadialGradient(originX, originY, 0, originX, originY, 220);
+  glow.addColorStop(0,   "rgba(255, 240, 160, 0.18)");
+  glow.addColorStop(0.4, "rgba(255, 220, 100, 0.06)");
+  glow.addColorStop(1,   "rgba(255, 200,  60, 0)");
+  sunCtx.beginPath();
+  sunCtx.arc(originX, originY, 220, 0, Math.PI * 2);
+  sunCtx.fillStyle = glow;
+  sunCtx.fill();
+}
+
+function startSunlight() {
+  if (!sunInterval) { sunInterval = setInterval(drawSunlight, 30); }
+}
+
+function stopSunlight() {
+  clearInterval(sunInterval);
+  sunInterval = null;
+  sunCtx.clearRect(0, 0, sunCanvas.width, sunCanvas.height);
+}
 
 
 /* ── BACKGROUND MUSIC ── */
