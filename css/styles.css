@@ -663,7 +663,7 @@ a.back-top:hover {
 #dark-toggle {
   position: fixed;
   right: 24px;
-  bottom: 84px;
+  bottom: 24px;
   z-index: 9999;
   cursor: pointer;
   user-select: none;
@@ -723,7 +723,7 @@ body.dark-mode #toggle-knob {
 #music-toggle {
   position: fixed;
   right: 24px;
-  bottom: 24px;
+  bottom: 84px;
   z-index: 9999;
   background: none;
   border: none;
