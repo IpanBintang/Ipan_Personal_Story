@@ -10,31 +10,38 @@
   <meta name="robots" content="index, follow" />
   <title>Home | My Personal Website</title>
   <link rel="stylesheet" type="text/css" href="css/styles.css" />
+  <style type="text/css">
+    #header.page-hero{position:relative;height:120px;overflow:hidden;background:#0a0a0a;}
+    .hero-bg{position:absolute;inset:0;background:linear-gradient(135deg,#1a0000 0%,#0d0d0d 50%,#000820 100%);}
+    .hero-overlay{position:absolute;inset:0;background:rgba(0,0,0,0.35);}
+    .hero-content{position:absolute;inset:0;display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-ms-flex-align:center;align-items:center;padding:0 32px;gap:20px;}
+    .hero-logo{width:64px;height:64px;flex-shrink:0;opacity:0.9;}
+    .hero-text{display:flex;flex-direction:column;gap:2px;}
+    .hero-title{font-family:Georgia,'Times New Roman',serif;font-size:42px;font-weight:700;color:rgba(255,255,255,0.07);letter-spacing:-1px;line-height:1;-webkit-text-stroke:1.2px rgba(255,255,255,0.5);margin:0;}
+    .hero-title .accent{color:rgba(212,31,31,0.1);-webkit-text-stroke:1.2px rgba(212,31,31,0.75);}
+    .hero-sub{font-family:Arial,Helvetica,sans-serif;font-size:10px;letter-spacing:4px;text-transform:uppercase;color:rgba(255,255,255,0.4);margin:4px 0 0;padding-left:2px;}
+    body.dark-mode #header.page-hero{background:#050505;}
+  </style>
 </head>
 <body>
 
   <!-- BACKGROUND MUSIC -->
- <!-- AFTER — fixed -->
 <audio id="bg-music" src="audio/bg.mp3" loop="loop" preload="auto">
 </audio>
 
 <div class="page-wrapper">
 
   <!-- HEADER / BANNER -->
-  <div id="header">
-    <table cellpadding="0" cellspacing="0" border="0">
-      <tr>
-        <td class="banner-left">
-          <img src="images/logo.png" alt="Logo" width="80" height="80" />
-        </td>
-        <td class="banner-center">
-          <p class="site-title">Ipan Azmi</p>
-          <p class="site-subtitle">&#9670; My Personal Website &#9670;</p>
-        </td>
-        <td class="banner-right">
-        </td>
-      </tr>
-    </table>
+  <div id="header" class="page-hero">
+    <div class="hero-bg"></div>
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <img src="images/logo.png" alt="Logo" class="hero-logo" />
+      <div class="hero-text">
+        <p class="hero-title">Ipan <span class="accent">Azmi</span></p>
+        <p class="hero-sub">&#9670; My Personal Website &#9670;</p>
+      </div>
+    </div>
   </div>
 
   <!-- NAVIGATION -->
@@ -193,7 +200,7 @@
           <tr><td>April 2026</td><td>Added Gallery page with new photos</td></tr>
           <tr><td>March 2026</td><td>Completed Hobby and About Me pages</td></tr>
           <tr><td>March 2026</td><td>Completed Education and Family pages</td></tr>
-          <tr><td>Junes 2026</td><td>Website design and layout completed</td></tr>
+          <tr><td>June 2026</td><td>Website design and layout completed</td></tr>
         </table>
 
         <hr />
@@ -218,7 +225,7 @@
       <tr>
         <td class="disc-left">Best viewed with: <strong>Google Chrome / Firefox</strong> &#160;|&#160; Resolution: <strong>1024 x 768</strong> or higher</td>
         <td class="disc-center"><strong>&#169; 2026 Irfan. All Rights Reserved.</strong></td>
-        <td class="disc-right">Last Updated: <strong>Junes 2026</strong> &#160;|&#160; <a href="index.html">Home</a></td>
+        <td class="disc-right">Last Updated: <strong>June 2026</strong> &#160;|&#160; <a href="index.html">Home</a></td>
       </tr>
       <tr>
         <td colspan="3" class="disc-center" style="padding-top: 6px;">
@@ -229,7 +236,7 @@
   </div>
 
 </div>
-  
+
 <!-- DARK MODE TOGGLE SWITCH -->
 <div id="dark-toggle" onclick="toggleDark()" title="Toggle Dark Mode" role="button" aria-label="Toggle dark mode">
   <div id="toggle-track">
@@ -248,6 +255,6 @@
 <canvas id="rain-canvas"></canvas>
 
 <script type="text/javascript" src="js/script.js"></script>
-  
+
 </body>
 </html>
