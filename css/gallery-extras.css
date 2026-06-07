@@ -1,0 +1,428 @@
+/* ============================================================
+   gallery-extras.css
+   Add-on styles for gallery.html
+   Features: Hero section, Hover caption cards, Photo grid,
+             Decorative dividers, Full-screen Lightbox
+   ============================================================ */
+
+
+/* ══════════════════════════════════════════════
+   HERO SECTION
+   ══════════════════════════════════════════════ */
+
+.gal-hero {
+  position: relative;
+  width: 100%;
+  height: 70vh;
+  min-height: 480px;
+  display: flex;
+  align-items: flex-end;
+  overflow: hidden;
+  /* Sits above the page-wrapper max-width, so pull out of it */
+  margin-left: calc(-50vw + 50%);
+  margin-right: calc(-50vw + 50%);
+  width: 100vw;
+}
+
+/* Background image — replace url() with your own hero photo */
+.gal-hero-bg {
+  position: absolute;
+  inset: 0;
+  background-image: url('../images/photo1.jpg'); /* ← change to your photo */
+  background-size: cover;
+  background-position: center top;
+  filter: brightness(0.40) saturate(0.65);
+  animation: heroZoom 18s ease-in-out infinite alternate;
+  transform-origin: center;
+}
+
+@keyframes heroZoom {
+  from { transform: scale(1); }
+  to   { transform: scale(1.06); }
+}
+
+/* Gradient overlay fading from dark top & dark bottom */
+.gal-hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(0,0,0,0.20) 0%,
+    transparent 30%,
+    rgba(0,0,0,0.50) 65%,
+    rgba(0,0,0,0.92) 100%
+  );
+}
+
+/* Text sits at the bottom-left */
+.gal-hero-content {
+  position: relative;
+  z-index: 10;
+  padding: 0 48px 60px;
+  max-width: 800px;
+}
+
+.gal-eyebrow {
+  display: block;
+  font-size: 10px;
+  letter-spacing: 5px;
+  color: var(--accent);
+  text-transform: uppercase;
+  margin-bottom: 14px;
+}
+
+.gal-hero-title {
+  font-family: var(--font-display);
+  font-size: clamp(52px, 8vw, 100px);
+  font-weight: 600;
+  line-height: 1;
+  color: #ffffff;
+  margin: 0 0 16px;
+  /* override h1 styles from styles.css */
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.gal-hero-title-accent {
+  color: var(--accent);
+  display: block;
+  text-shadow: 0 0 60px rgba(200,53,42,0.45);
+}
+
+.gal-hero-sub {
+  font-size: 14px;
+  color: rgba(255,255,255,0.55);
+  letter-spacing: 2px;
+  margin-bottom: 20px;
+}
+
+.gal-hero-count {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  font-size: 10px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.45);
+}
+
+.gal-hero-count::before {
+  content: '';
+  display: block;
+  width: 32px;
+  height: 1px;
+  background: var(--accent);
+}
+
+/* Animated scroll indicator bottom-right */
+.gal-hero-scroll {
+  position: absolute;
+  bottom: 28px;
+  right: 40px;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  font-size: 9px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.40);
+}
+
+.gal-hero-scroll-line {
+  width: 1px;
+  height: 50px;
+  background: linear-gradient(to bottom, var(--accent), transparent);
+  animation: scrollPulse 1.8s ease-in-out infinite;
+}
+
+@keyframes scrollPulse {
+  0%, 100% { opacity: 1;   transform: scaleY(1); }
+  50%       { opacity: 0.3; transform: scaleY(0.5); }
+}
+
+/* Dark-mode hero overlay tweak */
+body.dark-mode .gal-hero-bg {
+  filter: brightness(0.35) saturate(0.5);
+}
+
+
+/* ══════════════════════════════════════════════
+   PHOTO GRID & CARDS
+   ══════════════════════════════════════════════ */
+
+.gal-grid-section {
+  margin: 28px 0 16px;
+}
+
+/* Each row is a flex row of cards */
+.gal-row {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 10px;
+  flex-wrap: wrap;
+}
+
+/* ── Individual card ── */
+.gal-card {
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  flex: 1 1 28%;    /* roughly 3-per-row */
+  min-width: 180px;
+  height: 220px;
+}
+
+/* Large variant — takes up ~2 columns worth */
+.gal-card.gal-card-large {
+  flex: 1 1 45%;
+}
+
+/* Photo fills the card */
+.gal-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  border-radius: 0;  /* card itself has the radius */
+  filter: grayscale(10%) brightness(0.88);
+  transition: transform 0.6s cubic-bezier(.25,.46,.45,.94),
+              filter 0.45s ease;
+}
+
+/* Zoom + colour on hover */
+.gal-card:hover img {
+  transform: scale(1.07);
+  filter: grayscale(0%) brightness(0.65);
+}
+
+/* ── Bottom gradient that fades in on hover ── */
+.gal-card::before {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0;
+  width: 100%; height: 60%;
+  background: linear-gradient(to top, rgba(0,0,0,0.90) 0%, transparent 100%);
+  z-index: 2;
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  border-radius: 0 0 var(--radius-md) var(--radius-md);
+}
+
+.gal-card:hover::before { opacity: 1; }
+
+/* ── Red accent top-line sweep ── */
+.gal-card::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 0; height: 2px;
+  background: linear-gradient(to right, var(--accent), #ff8a80);
+  z-index: 5;
+  transition: width 0.45s ease;
+  border-radius: var(--radius-md) var(--radius-md) 0 0;
+}
+
+.gal-card:hover::after { width: 100%; }
+
+/* ── Caption — hidden, slides up on hover ── */
+.gal-card-caption {
+  position: absolute;
+  bottom: 0; left: 0;
+  width: 100%;
+  padding: 20px 16px 14px;
+  z-index: 10;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 0.35s ease, transform 0.35s ease;
+  pointer-events: none;
+}
+
+.gal-card:hover .gal-card-caption {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.gal-card-title {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 18px;
+  font-weight: 600;
+  color: #ffffff;
+  line-height: 1.1;
+  margin-bottom: 3px;
+}
+
+.gal-card-sub {
+  display: block;
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+/* ── Number badge top-right ── */
+.gal-card-num {
+  position: absolute;
+  top: 10px; right: 12px;
+  font-family: var(--font-body);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 2px;
+  color: rgba(255,255,255,0.55);
+  z-index: 10;
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+
+.gal-card:hover .gal-card-num { opacity: 1; }
+
+/* Dark mode card bg */
+body.dark-mode .gal-card {
+  background: var(--surface);
+}
+
+
+/* ══════════════════════════════════════════════
+   DECORATIVE DIVIDERS
+   ══════════════════════════════════════════════ */
+
+.gal-divider {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin: 18px 0;
+}
+
+.gal-divider-line {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--border), transparent);
+}
+
+.gal-divider-icon {
+  font-size: 14px;
+  color: var(--accent);
+  letter-spacing: 6px;
+}
+
+body.dark-mode .gal-divider-line {
+  background: linear-gradient(to right, transparent, rgba(255,255,255,0.10), transparent);
+}
+
+
+/* ══════════════════════════════════════════════
+   FULL-SCREEN LIGHTBOX
+   ══════════════════════════════════════════════ */
+
+#gal-lightbox {
+  display: none;           /* toggled to flex by JS */
+  position: fixed;
+  inset: 0;
+  background: rgba(5,5,5,0.96);
+  z-index: 99999;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  cursor: pointer;
+  /* Opacity transition */
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+#gal-lightbox.open {
+  opacity: 1;
+}
+
+/* The big photo */
+#gal-lb-img {
+  max-width: 82vw;
+  max-height: 76vh;
+  object-fit: contain;
+  border: 1px solid rgba(200,53,42,0.30);
+  border-radius: var(--radius-md);
+  box-shadow: 0 0 80px rgba(200,53,42,0.15),
+              0 0 180px rgba(200,53,42,0.05);
+  cursor: default;
+  animation: lbZoom 0.35s cubic-bezier(.25,.46,.45,.94);
+}
+
+@keyframes lbZoom {
+  from { transform: scale(0.90); opacity: 0; }
+  to   { transform: scale(1);    opacity: 1; }
+}
+
+/* Caption block */
+.gal-lb-caption {
+  margin-top: 18px;
+  text-align: center;
+}
+
+.gal-lb-caption-title {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-weight: 600;
+  color: #ffffff;
+  letter-spacing: 1px;
+}
+
+.gal-lb-caption-sub {
+  display: block;
+  font-size: 10px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-top: 4px;
+}
+
+.gal-lb-hint {
+  font-size: 10px;
+  letter-spacing: 2px;
+  color: rgba(255,255,255,0.25);
+  margin-top: 14px;
+  text-transform: uppercase;
+}
+
+/* Close button */
+#gal-lb-close {
+  position: absolute;
+  top: 20px; right: 30px;
+  font-size: 12px;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.45);
+  cursor: pointer;
+  z-index: 100000;
+  transition: color 0.2s;
+  font-family: var(--font-body);
+}
+
+#gal-lb-close:hover { color: var(--accent); }
+
+/* Arrow navigation */
+.gal-lb-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 26px;
+  color: rgba(255,255,255,0.35);
+  cursor: pointer;
+  z-index: 100000;
+  padding: 16px;
+  transition: color 0.2s;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.gal-lb-nav:hover { color: var(--accent); }
+.gal-lb-prev      { left: 16px; }
+.gal-lb-next      { right: 16px; }
+
+/* Dark mode has no extra changes needed — lightbox is always dark */
