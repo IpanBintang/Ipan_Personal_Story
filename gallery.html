@@ -305,72 +305,7 @@
   </div>
   <!-- ============================================================= -->
 
-  <script type="text/javascript" src="js/script.js"></script>
-
-  <script type="text/javascript">
-    /* ── LIGHTBOX ── */
-    var lightbox   = document.getElementById('gal-lightbox');
-    var lbImg      = document.getElementById('gal-lb-img');
-    var lbTitle    = document.getElementById('gal-lb-title');
-    var lbSub      = document.getElementById('gal-lb-sub');
-    var imgItems   = [];
-    var currentIdx = 0;
-
-    /* Collect all gallery cards */
-    var cards = document.querySelectorAll('.gal-card');
-    for (var i = 0; i < cards.length; i++) {
-      (function(card, idx) {
-        var imgSrc = card.getAttribute('data-img') || (card.querySelector('img') ? card.querySelector('img').src : '');
-        imgItems.push({
-          src:   imgSrc,
-          title: card.getAttribute('data-title') || '',
-          sub:   card.getAttribute('data-sub')   || ''
-        });
-        card.addEventListener('click', function() { openLB(idx); });
-      })(cards[i], i);
-    }
-
-    function openLB(idx) {
-      currentIdx  = idx;
-      var d       = imgItems[idx];
-      lbImg.src   = d.src;
-      lbTitle.innerHTML = d.title;
-      lbSub.innerHTML   = d.sub;
-      lightbox.style.display = 'flex';
-      /* small delay so display:flex kicks in before opacity transition */
-      setTimeout(function() { lightbox.classList.add('open'); }, 10);
-    }
-
-    function closeLB() {
-      lightbox.classList.remove('open');
-      setTimeout(function() { lightbox.style.display = 'none'; }, 300);
-    }
-
-    document.getElementById('gal-lb-close').addEventListener('click', function(e) {
-      e.stopPropagation(); closeLB();
-    });
-    document.getElementById('gal-lb-prev').addEventListener('click', function(e) {
-      e.stopPropagation();
-      currentIdx = (currentIdx - 1 + imgItems.length) % imgItems.length;
-      openLB(currentIdx);
-    });
-    document.getElementById('gal-lb-next').addEventListener('click', function(e) {
-      e.stopPropagation();
-      currentIdx = (currentIdx + 1) % imgItems.length;
-      openLB(currentIdx);
-    });
-    lightbox.addEventListener('click', function(e) {
-      if (e.target === lightbox) closeLB();
-    });
-    lbImg.addEventListener('click', function(e) { e.stopPropagation(); });
-
-    document.addEventListener('keydown', function(e) {
-      if (!lightbox.classList.contains('open')) return;
-      if (e.key === 'Escape')     closeLB();
-      if (e.key === 'ArrowLeft')  { currentIdx = (currentIdx - 1 + imgItems.length) % imgItems.length; openLB(currentIdx); }
-      if (e.key === 'ArrowRight') { currentIdx = (currentIdx + 1) % imgItems.length; openLB(currentIdx); }
-    });
-  </script>
-
+<script type="text/javascript" src="js/script.js"></script>
+  
 </body>
 </html>
