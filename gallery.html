@@ -12,7 +12,6 @@
 </head>
 <body>
 
-  <!-- BACKGROUND MUSIC -->
  <!-- BACKGROUND MUSIC -->
  <!-- AFTER — fixed -->
 <audio id="bg-music" src="audio/bg.mp3" loop="loop" preload="auto">
@@ -32,7 +31,6 @@
           <p class="site-subtitle">&#9670; My Personal Website &#9670;</p>
         </td>
         <td class="banner-right">
-          <img src="images/banner-deco.png" alt="Decoration" width="80" height="80" />
         </td>
       </tr>
     </table>
@@ -134,15 +132,19 @@
 
 </div>
 
-<!-- DARK MODE BUTTON -->
-<button id="dark-toggle" onclick="toggleDark()" title="Toggle Dark Mode">
-  <img id="dark-icon" src="images/moon.png" alt="Switch to dark mode" />
-</button>
-
 <!-- MUSIC BUTTON -->
 <button id="music-toggle" onclick="toggleMusic()" title="Toggle Music">
   <img id="music-icon" src="images/sound.png" alt="Play music" />
 </button>
+  
+<!-- DARK MODE TOGGLE SWITCH -->
+<div id="dark-toggle" onclick="toggleDark()" title="Toggle Dark Mode" role="button" aria-label="Toggle dark mode">
+  <div id="toggle-track">
+    <div id="toggle-knob">
+      <img id="dark-icon" src="images/moon.png" alt="Switch to dark mode" />
+    </div>
+  </div>
+</div>
 
  <!-- RAIN CANVAS -->
 <canvas id="rain-canvas"></canvas>
