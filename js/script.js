@@ -60,16 +60,6 @@ function toggleDark() {
   }
 }
 
-if (localStorage.getItem("darkMode") === "1") {
-  document.body.classList.add("dark-mode");
-  darkIcon.src = LIGHT_ICON;
-  darkIcon.alt = "Switch to light mode";
-  startRain();
-} else {
-  darkIcon.src = DARK_ICON;
-  darkIcon.alt = "Switch to dark mode";
-  startSunlight();
-}
 
 /* ── RAIN EFFECT ── */
 var rainInterval = null;
@@ -81,7 +71,7 @@ function resizeCanvas() {
   canvas.height = window.innerHeight;
 }
 resizeCanvas();
-window.onresize = resizeCanvas;
+window.addEventListener("resize", resizeCanvas);
 
 var drops = [];
 for (var i = 0; i < 120; i++) {
@@ -122,7 +112,6 @@ function stopRain() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
 }
 
-if (document.body.classList.contains("dark-mode")) { startRain(); }
 
 /* ── SUNLIGHT EFFECT ── */
 var sunCanvas = document.createElement("canvas");
@@ -142,22 +131,20 @@ window.addEventListener("resize", resizeSunCanvas);
 var rays = [];
 for (var s = 0; s < 18; s++) {
   rays.push({
-    angle:   Math.random() * Math.PI * 0.55 + Math.PI * 0.1,
-    length:  window.innerHeight * (0.5 + Math.random() * 0.7),
-    width:   18 + Math.random() * 60,
-    opacity: 0,
+    angle:         Math.random() * Math.PI * 0.55 + Math.PI * 0.1,
+    length:        window.innerHeight * (0.5 + Math.random() * 0.7),
+    width:         18 + Math.random() * 60,
+    opacity:       0,
     targetOpacity: 0.04 + Math.random() * 0.07,
-    speed:   0.003 + Math.random() * 0.005,
-    phase:   Math.random() * Math.PI * 2,
-    drift:   (Math.random() - 0.5) * 0.0004
+    speed:         0.003 + Math.random() * 0.005,
+    phase:         Math.random() * Math.PI * 2,
+    drift:         (Math.random() - 0.5) * 0.0004
   });
 }
 
-var originX, originY;
-
 function drawSunlight() {
-  originX = sunCanvas.width * 0.92;
-  originY = sunCanvas.height * -0.05;
+  var originX = sunCanvas.width * 0.92;
+  var originY = sunCanvas.height * -0.05;
   sunCtx.clearRect(0, 0, sunCanvas.width, sunCanvas.height);
   var t = Date.now() * 0.001;
 
@@ -175,16 +162,15 @@ function drawSunlight() {
     var perpY =  Math.cos(r.angle);
 
     sunCtx.beginPath();
-    sunCtx.moveTo(originX + perpX * 1,   originY + perpY * 1);
-    sunCtx.lineTo(originX - perpX * 1,   originY - perpY * 1);
-    sunCtx.lineTo(endX - perpX * halfW,  endY - perpY * halfW);
-    sunCtx.lineTo(endX + perpX * halfW,  endY + perpY * halfW);
+    sunCtx.moveTo(originX + perpX * 1,  originY + perpY * 1);
+    sunCtx.lineTo(originX - perpX * 1,  originY - perpY * 1);
+    sunCtx.lineTo(endX - perpX * halfW, endY - perpY * halfW);
+    sunCtx.lineTo(endX + perpX * halfW, endY + perpY * halfW);
     sunCtx.closePath();
     sunCtx.fillStyle = "rgba(255, 220, 100, " + alpha + ")";
     sunCtx.fill();
   }
 
-  /* soft glow at origin */
   var glow = sunCtx.createRadialGradient(originX, originY, 0, originX, originY, 220);
   glow.addColorStop(0,   "rgba(255, 240, 160, 0.18)");
   glow.addColorStop(0.4, "rgba(255, 220, 100, 0.06)");
@@ -219,8 +205,7 @@ function setMusicIcon(isPlaying) {
   musicIcon.alt = isPlaying ? "Pause music" : "Play music";
 }
 
-/* Restore music position and auto-resume if it was playing */
-var savedTime = parseFloat(localStorage.getItem("musicTime") || "0");
+var savedTime  = parseFloat(localStorage.getItem("musicTime") || "0");
 var wasPlaying = localStorage.getItem("musicOn") === "1";
 
 music.addEventListener("canplay", function () {
@@ -236,7 +221,6 @@ music.addEventListener("canplay", function () {
   }
 }, { once: true });
 
-/* Save position and state before leaving page */
 window.addEventListener("beforeunload", function () {
   localStorage.setItem("musicTime", music.currentTime);
   localStorage.setItem("musicOn", music.paused ? "0" : "1");
@@ -258,3 +242,16 @@ function toggleMusic() {
 }
 
 setMusicIcon(false);
+
+
+/* ── INIT: apply saved dark mode preference ── */
+if (localStorage.getItem("darkMode") === "1") {
+  document.body.classList.add("dark-mode");
+  darkIcon.src = LIGHT_ICON;
+  darkIcon.alt = "Switch to light mode";
+  startRain();
+} else {
+  darkIcon.src = DARK_ICON;
+  darkIcon.alt = "Switch to dark mode";
+  startSunlight();
+}
