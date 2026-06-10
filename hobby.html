@@ -128,9 +128,11 @@
         <!-- HOBBY 1: Photography -->
         <a name="photography" id="photography"></a>
         <div class="hobby-card clearfix">
-         <div class="img-hover-card float-left" style="width:170px; height:120px; margin: 0 20px 14px 0;">
-          <img src="images/hobby-photo.jpg" alt="Photography Hobby" width="170" height="120" />
-              </div>
+         <div class="img-hover-card gal-card float-left"
+     style="width:170px; height:120px; margin: 0 20px 14px 0;"
+     data-img="images/hobby-photo.jpg" data-title="Photography" data-sub="Hobby">
+         <img src="images/hobby-photo.jpg" alt="Photography Hobby" width="170" height="120" />
+            </div>
           <h3>&#128247; Photography</h3>
           <p>Photography is my <strong>favourite hobby</strong>. I started taking photos when
           I was in secondary school using just my phone, and I have grown to appreciate
@@ -291,6 +293,19 @@
 
   <!-- RAIN CANVAS -->
 <canvas id="rain-canvas"></canvas>
+
+  <!-- LIGHTBOX -->
+<div id="gal-lightbox">
+  <span id="gal-lb-close">&#10005; Close</span>
+  <span class="gal-lb-nav gal-lb-prev" id="gal-lb-prev">&#8592;</span>
+  <span class="gal-lb-nav gal-lb-next" id="gal-lb-next">&#8594;</span>
+  <img id="gal-lb-img" src="" alt="Full Photo" />
+  <div class="gal-lb-caption">
+    <span class="gal-lb-caption-title" id="gal-lb-title"></span>
+    <span class="gal-lb-caption-sub" id="gal-lb-sub"></span>
+  </div>
+  <p class="gal-lb-hint">ESC or click backdrop to close &#160;&#183;&#160; &#8592; &#8594; to navigate</p>
+</div>
 
   <!-- JAVA SCRIPT -->
 <script type="text/javascript" src="js/script.js"></script>
