@@ -377,3 +377,36 @@ body.dark-mode .gal-divider-line {
 .gal-lb-nav:hover { color: var(--accent); }
 .gal-lb-prev      { left: 16px; }
 .gal-lb-next      { right: 16px; }
+
+/* ── LIGHTBOX VIDEO ── */
+#gal-lb-video {
+  max-width: 82vw;
+  max-height: 76vh;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  border: 1px solid rgba(200,53,42,0.30);
+  border-radius: var(--radius-md);
+  box-shadow: 0 0 80px rgba(200,53,42,0.15),
+              0 0 180px rgba(200,53,42,0.05);
+  cursor: default;
+  display: none;
+  animation: lbZoom 0.35s cubic-bezier(.25,.46,.45,.94);
+}
+
+/* also make sure the card video thumbnail fills correctly */
+.gal-card video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  border-radius: 0;
+  filter: grayscale(10%) brightness(0.88);
+  transition: transform 0.6s cubic-bezier(.25,.46,.45,.94),
+              filter 0.45s ease;
+}
+
+.gal-card:hover video {
+  transform: scale(1.07);
+  filter: grayscale(0%) brightness(0.65);
+}
