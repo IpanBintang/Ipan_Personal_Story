@@ -330,17 +330,30 @@
   <canvas id="rain-canvas"></canvas>
 
   <!-- LIGHTBOX -->
-  <div id="gal-lightbox">
-    <span id="gal-lb-close">&#10005; Close</span>
-    <span class="gal-lb-nav gal-lb-prev" id="gal-lb-prev">&#8592;</span>
-    <span class="gal-lb-nav gal-lb-next" id="gal-lb-next">&#8594;</span>
-    <img id="gal-lb-img" src="" alt="Full Photo" />
-    <div class="gal-lb-caption">
-      <span class="gal-lb-caption-title" id="gal-lb-title"></span>
-      <span class="gal-lb-caption-sub" id="gal-lb-sub"></span>
-    </div>
-    <p class="gal-lb-hint">ESC or click backdrop to close &#160;&#183;&#160; &#8592; &#8594; to navigate</p>
+<div id="gal-lightbox">
+  <span id="gal-lb-close">&#10005; Close</span>
+  <span class="gal-lb-nav gal-lb-prev" id="gal-lb-prev">&#8592;</span>
+  <span class="gal-lb-nav gal-lb-next" id="gal-lb-next">&#8594;</span>
+
+  <!-- IMAGE (shown by default) -->
+  <img id="gal-lb-img" src="" alt="Full Photo" />
+
+  <!-- VIDEO (hidden by default) -->
+  <video id="gal-lb-video"
+         controls autoplay loop playsinline
+         style="display:none; max-width:82vw; max-height:76vh;
+                border-radius:10px;
+                border:1px solid rgba(200,53,42,0.30);
+                box-shadow:0 0 80px rgba(200,53,42,0.15);
+                cursor:default;">
+  </video>
+
+  <div class="gal-lb-caption">
+    <span class="gal-lb-caption-title" id="gal-lb-title"></span>
+    <span class="gal-lb-caption-sub" id="gal-lb-sub"></span>
   </div>
+  <p class="gal-lb-hint">ESC or click backdrop to close &#160;&#183;&#160; &#8592; &#8594; to navigate</p>
+</div>
 
   <script type="text/javascript" src="js/script.js"></script>
 
