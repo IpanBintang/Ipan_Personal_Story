@@ -860,6 +860,13 @@ body.dark-mode .video-wrap:hover {
 
 .img-hover-card:hover::after { width: 100%; }
 
+/* Allow inline height on non-grid cards */
+.img-hover-card.gal-card {
+  height: auto;
+  flex: none;
+  min-width: 0;
+}
+
 /* ══════════════════════════════════════════════
    DARK MODE
    ══════════════════════════════════════════════ */
