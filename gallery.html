@@ -17,7 +17,7 @@
 
   <div class="page-wrapper">
 
-    <!-- HEADER — replaced with Gallery hero title -->
+    <!-- HEADER -->
     <div id="header" class="gal-header-hero">
       <div class="gal-header-bg"></div>
       <div class="gal-header-overlay"></div>
@@ -104,14 +104,14 @@
           <p>Welcome to my photo gallery! These are some of my favourite moments and memories.
           <strong>Click on any photo</strong> to view it in fullscreen, and use the arrow keys or buttons to navigate between photos.</p>
 
-          <!-- ===================== PHOTO GRID (NEW) ===================== -->
+          <!-- ===================== PHOTO GRID ===================== -->
           <a name="gallery-grid" id="gallery-grid"></a>
           <div class="gal-grid-section">
 
             <!-- ROW 1 -->
             <div class="gal-row">
 
-              <div class="gal-card gal-card-large"
+              <div class="gal-card"
                    data-title="My Favourite Moment"
                    data-sub="Portrait · 2025"
                    data-img="images/photo1.jpg">
@@ -135,18 +135,6 @@
                 <span class="gal-card-num">02</span>
               </div>
 
-              <div class="gal-card"
-                   data-title="Good Vibes"
-                   data-sub="Daily · 2025"
-                   data-img="images/photo3.jpg">
-                <img src="images/photo3.jpg" alt="Good Vibes" />
-                <div class="gal-card-caption">
-                  <span class="gal-card-title">Good Vibes</span>
-                  <span class="gal-card-sub">Daily · 2025</span>
-                </div>
-                <span class="gal-card-num">03</span>
-              </div>
-
             </div>
 
             <!-- DIVIDER -->
@@ -160,6 +148,18 @@
             <div class="gal-row">
 
               <div class="gal-card"
+                   data-title="Good Vibes"
+                   data-sub="Daily · 2025"
+                   data-img="images/photo3.jpg">
+                <img src="images/photo3.jpg" alt="Good Vibes" />
+                <div class="gal-card-caption">
+                  <span class="gal-card-title">Good Vibes</span>
+                  <span class="gal-card-sub">Daily · 2025</span>
+                </div>
+                <span class="gal-card-num">03</span>
+              </div>
+
+              <div class="gal-card"
                    data-title="Beautiful View"
                    data-sub="Places · 2025"
                    data-img="images/photo4.jpg">
@@ -170,6 +170,18 @@
                 </div>
                 <span class="gal-card-num">04</span>
               </div>
+
+            </div>
+
+            <!-- DIVIDER -->
+            <div class="gal-divider">
+              <div class="gal-divider-line"></div>
+              <span class="gal-divider-icon">&#10022;</span>
+              <div class="gal-divider-line"></div>
+            </div>
+
+            <!-- ROW 3 -->
+            <div class="gal-row">
 
               <div class="gal-card"
                    data-title="My Place"
@@ -183,7 +195,7 @@
                 <span class="gal-card-num">05</span>
               </div>
 
-              <div class="gal-card gal-card-large"
+              <div class="gal-card"
                    data-title="Everyday Life"
                    data-sub="Daily · 2025"
                    data-img="images/photo6.jpg">
@@ -204,7 +216,7 @@
               <div class="gal-divider-line"></div>
             </div>
 
-            <!-- ROW 3 — add more photos as needed -->
+            <!-- ROW 4 -->
             <div class="gal-row">
 
               <div class="gal-card"
@@ -231,6 +243,18 @@
                 <span class="gal-card-num">08</span>
               </div>
 
+            </div>
+
+            <!-- DIVIDER -->
+            <div class="gal-divider">
+              <div class="gal-divider-line"></div>
+              <span class="gal-divider-icon">&#10022;</span>
+              <div class="gal-divider-line"></div>
+            </div>
+
+            <!-- ROW 5 — last photo centered -->
+            <div class="gal-row gal-row-center">
+
               <div class="gal-card"
                    data-title="Good Times"
                    data-sub="Memories · 2025"
@@ -246,7 +270,7 @@
             </div>
 
           </div>
-          <!-- ============================================================= -->
+          <!-- ======================================================= -->
 
           <p style="text-align:center; margin-top: 20px;">
             <a href="#top" class="back-top">&#8593; Back to Top</a>
@@ -256,7 +280,7 @@
       </tr>
     </table>
 
-    <!-- DISCLAIMER / FOOTER -->
+    <!-- FOOTER -->
     <div id="disclaimer">
       <table class="disclaimer-table" cellpadding="0" cellspacing="0" border="0">
         <tr>
@@ -279,7 +303,7 @@
     <img id="music-icon" src="images/sound.png" alt="Play music" />
   </button>
 
-  <!-- DARK MODE TOGGLE SWITCH -->
+  <!-- DARK MODE TOGGLE -->
   <div id="dark-toggle" onclick="toggleDark()" title="Toggle Dark Mode" role="button" aria-label="Toggle dark mode">
     <div id="toggle-track">
       <div id="toggle-knob">
@@ -291,7 +315,7 @@
   <!-- RAIN CANVAS -->
   <canvas id="rain-canvas"></canvas>
 
-  <!-- ===================== LIGHTBOX (NEW) ===================== -->
+  <!-- LIGHTBOX -->
   <div id="gal-lightbox">
     <span id="gal-lb-close">&#10005; Close</span>
     <span class="gal-lb-nav gal-lb-prev" id="gal-lb-prev">&#8592;</span>
@@ -303,9 +327,8 @@
     </div>
     <p class="gal-lb-hint">ESC or click backdrop to close &#160;&#183;&#160; &#8592; &#8594; to navigate</p>
   </div>
-  <!-- ============================================================= -->
 
-<script type="text/javascript" src="js/script.js"></script>
-  
+  <script type="text/javascript" src="js/script.js"></script>
+
 </body>
 </html>
