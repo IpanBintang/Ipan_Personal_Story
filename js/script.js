@@ -321,3 +321,98 @@ if (lightbox) {
     if (e.key === 'ArrowRight') { currentIdx = (currentIdx + 1) % imgItems.length; openLB(currentIdx); }
   });
 }
+
+/* ── GALLERY LIGHTBOX ── */
+var lightbox = document.getElementById('gal-lightbox');
+
+if (lightbox) {
+  var lbImg    = document.getElementById('gal-lb-img');
+  var lbTitle  = document.getElementById('gal-lb-title');
+  var lbSub    = document.getElementById('gal-lb-sub');
+  var imgItems = [];
+  var currentIdx = 0;
+
+  /* Create a video element for the lightbox */
+  var lbVideo = document.createElement('video');
+  lbVideo.id = 'gal-lb-video';
+  lbVideo.setAttribute('controls', '');
+  lbVideo.setAttribute('autoplay', '');
+  lbVideo.setAttribute('loop', '');
+  lbVideo.setAttribute('playsinline', '');
+  lbVideo.style.cssText = 'max-width:82vw;max-height:76vh;border-radius:10px;border:1px solid rgba(200,53,42,0.30);box-shadow:0 0 80px rgba(200,53,42,0.15);display:none;cursor:default;';
+  /* Insert video right after the img in the lightbox */
+  lbImg.parentNode.insertBefore(lbVideo, lbImg.nextSibling);
+  lbVideo.addEventListener('click', function(e) { e.stopPropagation(); });
+
+  /* Collect all gallery cards */
+  var cards = document.querySelectorAll('.gal-card');
+  for (var i = 0; i < cards.length; i++) {
+    (function(card, idx) {
+      var imgSrc = card.getAttribute('data-img') || (card.querySelector('img') ? card.querySelector('img').src : '');
+      var type   = card.getAttribute('data-type') || 'image';
+      imgItems.push({
+        src:   imgSrc,
+        title: card.getAttribute('data-title') || '',
+        sub:   card.getAttribute('data-sub')   || '',
+        type:  type
+      });
+      card.addEventListener('click', function() { openLB(idx); });
+    })(cards[i], i);
+  }
+
+  function openLB(idx) {
+    currentIdx = idx;
+    var d = imgItems[idx];
+    lbTitle.innerHTML = d.title;
+    lbSub.innerHTML   = d.sub;
+
+    if (d.type === 'video') {
+      lbImg.style.display   = 'none';
+      lbVideo.style.display = 'block';
+      lbVideo.src = d.src;
+      lbVideo.load();
+      lbVideo.play().catch(function(){});
+    } else {
+      lbVideo.pause();
+      lbVideo.src           = '';
+      lbVideo.style.display = 'none';
+      lbImg.style.display   = 'block';
+      lbImg.src             = d.src;
+    }
+
+    lightbox.style.display = 'flex';
+    setTimeout(function() { lightbox.classList.add('open'); }, 10);
+  }
+
+  function closeLB() {
+    lightbox.classList.remove('open');
+    lbVideo.pause();
+    lbVideo.src = '';
+    setTimeout(function() { lightbox.style.display = 'none'; }, 300);
+  }
+
+  document.getElementById('gal-lb-close').addEventListener('click', function(e) {
+    e.stopPropagation(); closeLB();
+  });
+  document.getElementById('gal-lb-prev').addEventListener('click', function(e) {
+    e.stopPropagation();
+    currentIdx = (currentIdx - 1 + imgItems.length) % imgItems.length;
+    openLB(currentIdx);
+  });
+  document.getElementById('gal-lb-next').addEventListener('click', function(e) {
+    e.stopPropagation();
+    currentIdx = (currentIdx + 1) % imgItems.length;
+    openLB(currentIdx);
+  });
+  lightbox.addEventListener('click', function(e) {
+    if (e.target === lightbox) closeLB();
+  });
+  lbImg.addEventListener('click', function(e) { e.stopPropagation(); });
+
+  document.addEventListener('keydown', function(e) {
+    if (!lightbox.classList.contains('open')) return;
+    if (e.key === 'Escape')     closeLB();
+    if (e.key === 'ArrowLeft')  { currentIdx = (currentIdx - 1 + imgItems.length) % imgItems.length; openLB(currentIdx); }
+    if (e.key === 'ArrowRight') { currentIdx = (currentIdx + 1) % imgItems.length; openLB(currentIdx); }
+  });
+}
