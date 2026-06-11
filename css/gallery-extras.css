@@ -380,10 +380,11 @@ body.dark-mode .gal-divider-line {
 
 /* ── LIGHTBOX VIDEO ── */
 #gal-lb-video {
+  width: 82vw;
   max-width: 82vw;
   max-height: 76vh;
-  width: auto;
   height: auto;
+  min-height: 200px;
   object-fit: contain;
   border: 1px solid rgba(200,53,42,0.30);
   border-radius: var(--radius-md);
