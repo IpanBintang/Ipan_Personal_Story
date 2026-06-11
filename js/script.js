@@ -256,155 +256,118 @@ if (localStorage.getItem("darkMode") === "1") {
   startSunlight();
 }
 
-/* ── GALLERY LIGHTBOX ── */
-var lightbox   = document.getElementById('gal-lightbox');
 
-/* Only run if lightbox exists (gallery page only) */
-if (lightbox) {
-  var lbImg      = document.getElementById('gal-lb-img');
-  var lbTitle    = document.getElementById('gal-lb-title');
-  var lbSub      = document.getElementById('gal-lb-sub');
-  var imgItems   = [];
-  var currentIdx = 0;
-
-  /* Collect all gallery cards */
-  var cards = document.querySelectorAll('.gal-card');
-  for (var i = 0; i < cards.length; i++) {
-    (function(card, idx) {
-      var imgSrc = card.getAttribute('data-img') || (card.querySelector('img') ? card.querySelector('img').src : '');
-      imgItems.push({
-        src:   imgSrc,
-        title: card.getAttribute('data-title') || '',
-        sub:   card.getAttribute('data-sub')   || ''
-      });
-      card.addEventListener('click', function() { openLB(idx); });
-    })(cards[i], i);
-  }
-
-  function openLB(idx) {
-    currentIdx      = idx;
-    var d           = imgItems[idx];
-    lbImg.src       = d.src;
-    lbTitle.innerHTML = d.title;
-    lbSub.innerHTML   = d.sub;
-    lightbox.style.display = 'flex';
-    setTimeout(function() { lightbox.classList.add('open'); }, 10);
-  }
-
-  function closeLB() {
-    lightbox.classList.remove('open');
-    setTimeout(function() { lightbox.style.display = 'none'; }, 300);
-  }
-
-  document.getElementById('gal-lb-close').addEventListener('click', function(e) {
-    e.stopPropagation(); closeLB();
-  });
-  document.getElementById('gal-lb-prev').addEventListener('click', function(e) {
-    e.stopPropagation();
-    currentIdx = (currentIdx - 1 + imgItems.length) % imgItems.length;
-    openLB(currentIdx);
-  });
-  document.getElementById('gal-lb-next').addEventListener('click', function(e) {
-    e.stopPropagation();
-    currentIdx = (currentIdx + 1) % imgItems.length;
-    openLB(currentIdx);
-  });
-  lightbox.addEventListener('click', function(e) {
-    if (e.target === lightbox) closeLB();
-  });
-  lbImg.addEventListener('click', function(e) { e.stopPropagation(); });
-
-  document.addEventListener('keydown', function(e) {
-    if (!lightbox.classList.contains('open')) return;
-    if (e.key === 'Escape')     closeLB();
-    if (e.key === 'ArrowLeft')  { currentIdx = (currentIdx - 1 + imgItems.length) % imgItems.length; openLB(currentIdx); }
-    if (e.key === 'ArrowRight') { currentIdx = (currentIdx + 1) % imgItems.length; openLB(currentIdx); }
-  });
-}
-
-/* ── GALLERY LIGHTBOX ── */
+/* ══════════════════════════════════════════════
+   GALLERY LIGHTBOX
+   Only runs on gallery.html (lightbox element must exist)
+   ══════════════════════════════════════════════ */
 var lightbox = document.getElementById('gal-lightbox');
 
 if (lightbox) {
+
   var lbImg    = document.getElementById('gal-lb-img');
+  var lbVideo  = document.getElementById('gal-lb-video');
   var lbTitle  = document.getElementById('gal-lb-title');
   var lbSub    = document.getElementById('gal-lb-sub');
-  var imgItems = [];
+
+  /* ── Collect all gallery cards into an items array ── */
+  var items      = [];
   var currentIdx = 0;
+  var cards      = document.querySelectorAll('.gal-card');
 
-  /* Create a video element for the lightbox */
-  var lbVideo = document.getElementById('gal-lb-video');
-lbVideo.addEventListener('click', function(e) { e.stopPropagation(); });
-
-  /* Collect all gallery cards */
-  var cards = document.querySelectorAll('.gal-card');
   for (var i = 0; i < cards.length; i++) {
     (function(card, idx) {
-      var imgSrc = card.getAttribute('data-img') || (card.querySelector('img') ? card.querySelector('img').src : '');
-      var type   = card.getAttribute('data-type') || 'image';
-      imgItems.push({
-        src:   imgSrc,
+      items.push({
+        src:   card.getAttribute('data-src')   || '',
+        type:  card.getAttribute('data-type')  || 'image',
         title: card.getAttribute('data-title') || '',
-        sub:   card.getAttribute('data-sub')   || '',
-        type:  type
+        sub:   card.getAttribute('data-sub')   || ''
       });
-      card.addEventListener('click', function() { openLB(idx); });
+      card.addEventListener('click', function () { openLB(idx); });
     })(cards[i], i);
   }
 
+  /* ── Open lightbox at a given index ── */
   function openLB(idx) {
     currentIdx = idx;
-    var d = imgItems[idx];
+    var d = items[idx];
+
     lbTitle.innerHTML = d.title;
     lbSub.innerHTML   = d.sub;
 
     if (d.type === 'video') {
+      /* Hide image, show video.
+         Use innerHTML + <source> instead of .src so Chrome
+         properly reloads the file every time the lightbox opens. */
       lbImg.style.display   = 'none';
+      lbVideo.innerHTML     = '<source src="' + d.src + '" type="video/mp4">';
       lbVideo.style.display = 'block';
-      lbVideo.src = d.src;
       lbVideo.load();
-      lbVideo.play().catch(function(){});
+      lbVideo.play().catch(function () {});
     } else {
+      /* Stop any playing video, show image */
       lbVideo.pause();
-      lbVideo.src           = '';
+      lbVideo.innerHTML     = '';
+      lbVideo.load();
       lbVideo.style.display = 'none';
-      lbImg.style.display   = 'block';
       lbImg.src             = d.src;
+      lbImg.style.display   = 'block';
     }
 
     lightbox.style.display = 'flex';
-    setTimeout(function() { lightbox.classList.add('open'); }, 10);
+    setTimeout(function () { lightbox.classList.add('open'); }, 10);
   }
 
+  /* ── Close lightbox ── */
   function closeLB() {
     lightbox.classList.remove('open');
     lbVideo.pause();
-    lbVideo.src = '';
-    setTimeout(function() { lightbox.style.display = 'none'; }, 300);
+    lbVideo.innerHTML = '';
+    lbVideo.load();
+    setTimeout(function () { lightbox.style.display = 'none'; }, 300);
   }
 
-  document.getElementById('gal-lb-close').addEventListener('click', function(e) {
-    e.stopPropagation(); closeLB();
-  });
-  document.getElementById('gal-lb-prev').addEventListener('click', function(e) {
-    e.stopPropagation();
-    currentIdx = (currentIdx - 1 + imgItems.length) % imgItems.length;
+  /* ── Navigation helpers ── */
+  function prevItem() {
+    currentIdx = (currentIdx - 1 + items.length) % items.length;
     openLB(currentIdx);
-  });
-  document.getElementById('gal-lb-next').addEventListener('click', function(e) {
-    e.stopPropagation();
-    currentIdx = (currentIdx + 1) % imgItems.length;
-    openLB(currentIdx);
-  });
-  lightbox.addEventListener('click', function(e) {
-    if (e.target === lightbox) closeLB();
-  });
-  lbImg.addEventListener('click', function(e) { e.stopPropagation(); });
+  }
 
-  document.addEventListener('keydown', function(e) {
-    if (!lightbox.classList.contains('open')) return;
-    if (e.key === 'Escape')     closeLB();
-    if (e.key === 'ArrowLeft')  { currentIdx = (currentIdx - 1 + imgItems.length) % imgItems.length; openLB(currentIdx); }
-    if (e.key === 'ArrowRight') { currentIdx = (currentIdx + 1) % imgItems.length; openLB(currentIdx); }
+  function nextItem() {
+    currentIdx = (currentIdx + 1) % items.length;
+    openLB(currentIdx);
+  }
+
+  /* ── Button listeners ── */
+  document.getElementById('gal-lb-close').addEventListener('click', function (e) {
+    e.stopPropagation();
+    closeLB();
   });
+
+  document.getElementById('gal-lb-prev').addEventListener('click', function (e) {
+    e.stopPropagation();
+    prevItem();
+  });
+
+  document.getElementById('gal-lb-next').addEventListener('click', function (e) {
+    e.stopPropagation();
+    nextItem();
+  });
+
+  /* ── Click backdrop to close (but not the media itself) ── */
+  lightbox.addEventListener('click', function (e) {
+    if (e.target === lightbox) { closeLB(); }
+  });
+
+  lbImg.addEventListener('click',   function (e) { e.stopPropagation(); });
+  lbVideo.addEventListener('click', function (e) { e.stopPropagation(); });
+
+  /* ── Keyboard navigation ── */
+  document.addEventListener('keydown', function (e) {
+    if (!lightbox.classList.contains('open')) return;
+    if (e.key === 'Escape')     { closeLB(); }
+    if (e.key === 'ArrowLeft')  { prevItem(); }
+    if (e.key === 'ArrowRight') { nextItem(); }
+  });
+
 }
