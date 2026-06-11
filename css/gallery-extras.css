@@ -1,18 +1,13 @@
 /* ============================================================
    gallery-extras.css
    Add-on styles for gallery.html
-   Features: Hero section, Hover caption cards, Photo grid,
+   Features: Hero section, Hover caption cards, 2-column Photo grid,
              Decorative dividers, Full-screen Lightbox
    ============================================================ */
 
 
 /* ══════════════════════════════════════════════
-   HEADER-HERO  (replaces the old #header banner)
-   ══════════════════════════════════════════════ */
-
-/* ══════════════════════════════════════════════
-   HEADER-HERO  (compact, same height as original
-   header, with photo peeking through + red line)
+   HEADER-HERO
    ══════════════════════════════════════════════ */
 
 #header.gal-header-hero {
@@ -24,14 +19,11 @@
   overflow: hidden;
   padding: 0;
   border-bottom: none;
-  /* THE FIX — styles.css sets background-color: var(--nav-bg) = solid #111111
-     which completely covers the photo. Must override to transparent. */
   background-color: transparent !important;
 }
 
-/* KEEP the red accent line — re-enable it */
 #header.gal-header-hero::after {
-  display: block !important;  /* overrides our earlier hide */
+  display: block !important;
   content: '';
   position: absolute;
   bottom: 0;
@@ -42,14 +34,12 @@
   z-index: 20;
 }
 
-/* Background photo — semi-transparent so it's a subtle peek */
 .gal-header-bg {
   position: absolute;
   inset: 0;
-  background-image: url('../images/photo1.jpg'); /* ← swap to your photo */
+  background-image: url('../images/photo1.jpg');
   background-size: cover;
   background-position: center top;
-  /* LOW brightness + high transparency = see-through cool look */
   filter: brightness(0.22) saturate(0.5);
   animation: heroZoom 18s ease-in-out infinite alternate;
   transform-origin: center;
@@ -60,7 +50,6 @@
   to   { transform: scale(1.06); }
 }
 
-/* Thin dark overlay so text stays readable */
 .gal-header-overlay {
   position: absolute;
   inset: 0;
@@ -68,29 +57,18 @@
   z-index: 1;
 }
 
-/* Content row — mirrors the original banner-center layout */
 .gal-header-content {
   position: relative;
   z-index: 10;
-  padding: 28px 24px 36px 20px; /* same feel as original banner-center */
+  padding: 28px 24px 36px 20px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
 }
 
-.gal-eyebrow {
-  display: block;
-  font-size: 10px;
-  letter-spacing: 5px;
-  color: var(--accent);
-  text-transform: uppercase;
-  margin-bottom: 8px;
-}
-
-/* "My Gallery" — sized to match "Ipan Azmi" heading scale */
 .gal-header-title {
   font-family: var(--font-display);
-  font-size: 52px;             /* matches .site-title font-size */
+  font-size: 52px;
   font-weight: 600;
   line-height: 1.1;
   color: #ffffff;
@@ -99,10 +77,9 @@
   text-align: left;
 }
 
-/* "Gallery" in red on its own line */
 .gal-header-title-accent {
   color: var(--accent);
-  display: inline;             /* inline so "My Gallery" stays on one line */
+  display: inline;
   text-shadow: 0 0 40px rgba(200,53,42,0.5);
 }
 
@@ -117,34 +94,36 @@
   text-align: left;
 }
 
-/* Hide the count & scroll indicator — not needed in compact mode */
-.gal-hero-count  { display: none; }
-.gal-hero-scroll { display: none; }
-
-/* Dark mode — slightly more transparent */
 body.dark-mode .gal-header-bg {
   filter: brightness(0.15) saturate(0.4);
 }
 
 
 /* ══════════════════════════════════════════════
-   PHOTO GRID & CARDS
+   PHOTO GRID — 2 COLUMNS
    ══════════════════════════════════════════════ */
 
 .gal-grid-section {
   margin: 28px 0 16px;
 }
 
-/* Each row is a flex row of cards */
+/* Each row holds exactly 2 cards */
 .gal-row {
   display: flex;
-  gap: 10px;
-  margin-bottom: 10px;
-  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 12px;
 }
 
-/* ── Individual card ── */
-/* WITH this: */
+/* Last row with a single card — keep it half-width, centered */
+.gal-row.gal-row-center {
+  justify-content: center;
+}
+
+.gal-row.gal-row-center .gal-card {
+  flex: 0 0 calc(50% - 6px); /* exactly half width like the others */
+}
+
+/* ── Individual card — always 50/50 split ── */
 .gal-card {
   position: relative;
   overflow: hidden;
@@ -152,23 +131,23 @@ body.dark-mode .gal-header-bg {
   background: var(--bg);
   border: 1px solid var(--border);
   border-radius: var(--radius-md);
-  flex: 1 1 45%;    /* 2-per-row */
-  min-width: 240px;
-  height: 260px;    /* slightly taller looks better at 2-col */
+  flex: 1 1 calc(50% - 6px);  /* 2 per row with the 12px gap */
+  min-width: 200px;
+  height: 260px;               /* square-ish, no stretching */
 }
 
-/* Remove the large variant or make it equal */
+/* Remove the large variant — everything is equal now */
 .gal-card.gal-card-large {
-  flex: 1 1 45%;    /* same as normal — no more stretching */
+  flex: 1 1 calc(50% - 6px);
 }
 
-/* Photo fills the card */
+/* Photo fills the card without distorting */
 .gal-card img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   display: block;
-  border-radius: 0;  /* card itself has the radius */
+  border-radius: 0;
   filter: grayscale(10%) brightness(0.88);
   transition: transform 0.6s cubic-bezier(.25,.46,.45,.94),
               filter 0.45s ease;
@@ -180,7 +159,7 @@ body.dark-mode .gal-header-bg {
   filter: grayscale(0%) brightness(0.65);
 }
 
-/* ── Bottom gradient that fades in on hover ── */
+/* ── Bottom gradient fade on hover ── */
 .gal-card::before {
   content: '';
   position: absolute;
@@ -209,7 +188,7 @@ body.dark-mode .gal-header-bg {
 
 .gal-card:hover::after { width: 100%; }
 
-/* ── Caption — hidden, slides up on hover ── */
+/* ── Caption — slides up on hover ── */
 .gal-card-caption {
   position: absolute;
   bottom: 0; left: 0;
@@ -261,7 +240,6 @@ body.dark-mode .gal-header-bg {
 
 .gal-card:hover .gal-card-num { opacity: 1; }
 
-/* Dark mode card bg */
 body.dark-mode .gal-card {
   background: var(--surface);
 }
@@ -300,7 +278,7 @@ body.dark-mode .gal-divider-line {
    ══════════════════════════════════════════════ */
 
 #gal-lightbox {
-  display: none;           /* toggled to flex by JS */
+  display: none;
   position: fixed;
   inset: 0;
   background: rgba(5,5,5,0.96);
@@ -311,7 +289,6 @@ body.dark-mode .gal-divider-line {
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
   cursor: pointer;
-  /* Opacity transition */
   opacity: 0;
   transition: opacity 0.3s ease;
 }
@@ -320,7 +297,6 @@ body.dark-mode .gal-divider-line {
   opacity: 1;
 }
 
-/* The big photo */
 #gal-lb-img {
   max-width: 82vw;
   max-height: 76vh;
@@ -338,7 +314,6 @@ body.dark-mode .gal-divider-line {
   to   { transform: scale(1);    opacity: 1; }
 }
 
-/* Caption block */
 .gal-lb-caption {
   margin-top: 18px;
   text-align: center;
@@ -370,7 +345,6 @@ body.dark-mode .gal-divider-line {
   text-transform: uppercase;
 }
 
-/* Close button */
 #gal-lb-close {
   position: absolute;
   top: 20px; right: 30px;
@@ -386,7 +360,6 @@ body.dark-mode .gal-divider-line {
 
 #gal-lb-close:hover { color: var(--accent); }
 
-/* Arrow navigation */
 .gal-lb-nav {
   position: absolute;
   top: 50%;
@@ -404,5 +377,3 @@ body.dark-mode .gal-divider-line {
 .gal-lb-nav:hover { color: var(--accent); }
 .gal-lb-prev      { left: 16px; }
 .gal-lb-next      { right: 16px; }
-
-/* Dark mode has no extra changes needed — lightbox is always dark */
