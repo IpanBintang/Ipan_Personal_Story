@@ -49,8 +49,10 @@ var darkIcon = document.getElementById("dark-icon");
 function toggleDark() {
   var isDark = document.body.classList.toggle("dark-mode");
   localStorage.setItem("darkMode", isDark ? "1" : "0");
-  darkIcon.src = isDark ? LIGHT_ICON : DARK_ICON;
-  darkIcon.alt = isDark ? "Switch to light mode" : "Switch to dark mode";
+  if (darkIcon) {
+    darkIcon.src = isDark ? LIGHT_ICON : DARK_ICON;
+    darkIcon.alt = isDark ? "Switch to light mode" : "Switch to dark mode";
+  }
   if (isDark) {
     startRain();
     stopSunlight();
@@ -64,9 +66,10 @@ function toggleDark() {
 /* ── RAIN EFFECT ── */
 var rainInterval = null;
 var canvas = document.getElementById("rain-canvas");
-var ctx = canvas.getContext("2d");
+var ctx = canvas ? canvas.getContext("2d") : null;
 
 function resizeCanvas() {
+  if (!canvas) return;
   canvas.width  = window.innerWidth;
   canvas.height = window.innerHeight;
 }
@@ -85,6 +88,7 @@ for (var i = 0; i < 120; i++) {
 }
 
 function drawRain() {
+  if (!ctx) return;
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   for (var i = 0; i < drops.length; i++) {
     var d = drops[i];
@@ -103,13 +107,14 @@ function drawRain() {
 }
 
 function startRain() {
+  if (!canvas) return;
   if (!rainInterval) { rainInterval = setInterval(drawRain, 30); }
 }
 
 function stopRain() {
   clearInterval(rainInterval);
   rainInterval = null;
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  if (ctx) { ctx.clearRect(0, 0, canvas.width, canvas.height); }
 }
 
 
@@ -198,35 +203,41 @@ var MUSIC_OFF_ICON = "images/sound-off.png";
 
 var music     = document.getElementById("bg-music");
 var musicIcon = document.getElementById("music-icon");
-music.volume  = 0.4;
+
+if (music) { music.volume = 0.4; }
 
 function setMusicIcon(isPlaying) {
+  if (!musicIcon) return;
   musicIcon.src = isPlaying ? MUSIC_ON_ICON : MUSIC_OFF_ICON;
   musicIcon.alt = isPlaying ? "Pause music" : "Play music";
 }
 
-var savedTime  = parseFloat(localStorage.getItem("musicTime") || "0");
-var wasPlaying = localStorage.getItem("musicOn") === "1";
+if (music) {
+  var savedTime  = parseFloat(localStorage.getItem("musicTime") || "0");
+  var wasPlaying = localStorage.getItem("musicOn") === "1";
 
-music.addEventListener("canplay", function () {
-  if (savedTime > 0) { music.currentTime = savedTime; }
-  if (wasPlaying) {
-    music.play().then(function () {
-      setMusicIcon(true);
-    }).catch(function () {
+  music.addEventListener("canplay", function () {
+    if (savedTime > 0) { music.currentTime = savedTime; }
+    if (wasPlaying) {
+      music.play().then(function () {
+        setMusicIcon(true);
+      }).catch(function () {
+        setMusicIcon(false);
+      });
+    } else {
       setMusicIcon(false);
-    });
-  } else {
-    setMusicIcon(false);
-  }
-}, { once: true });
+    }
+  }, { once: true });
+}
 
 window.addEventListener("beforeunload", function () {
+  if (!music) return;
   localStorage.setItem("musicTime", music.currentTime);
   localStorage.setItem("musicOn", music.paused ? "0" : "1");
 });
 
 function toggleMusic() {
+  if (!music) return;
   if (music.paused) {
     music.play().then(function () {
       setMusicIcon(true);
@@ -247,12 +258,10 @@ setMusicIcon(false);
 /* ── INIT: apply saved dark mode preference ── */
 if (localStorage.getItem("darkMode") === "1") {
   document.body.classList.add("dark-mode");
-  darkIcon.src = LIGHT_ICON;
-  darkIcon.alt = "Switch to light mode";
+  if (darkIcon) { darkIcon.src = LIGHT_ICON; darkIcon.alt = "Switch to light mode"; }
   startRain();
 } else {
-  darkIcon.src = DARK_ICON;
-  darkIcon.alt = "Switch to dark mode";
+  if (darkIcon) { darkIcon.src = DARK_ICON; darkIcon.alt = "Switch to dark mode"; }
   startSunlight();
 }
 
@@ -296,16 +305,15 @@ if (lightbox) {
     lbSub.innerHTML   = d.sub;
 
     if (d.type === 'video') {
-      /* Hide image, show video.
-         Use innerHTML + <source> instead of .src so Chrome
-         properly reloads the file every time the lightbox opens. */
       lbImg.style.display   = 'none';
-      lbVideo.innerHTML     = '<source src="' + d.src + '" type="video/mp4">';
       lbVideo.style.display = 'block';
+      /* Set explicit dimensions so it never collapses */
+      lbVideo.style.width    = '82vw';
+      lbVideo.style.maxWidth = '82vw';
+      lbVideo.innerHTML = '<source src="' + d.src + '" type="video/mp4">';
       lbVideo.load();
       lbVideo.play().catch(function () {});
     } else {
-      /* Stop any playing video, show image */
       lbVideo.pause();
       lbVideo.innerHTML     = '';
       lbVideo.load();
