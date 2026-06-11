@@ -295,21 +295,15 @@ if (lightbox) {
     lbTitle.innerHTML = d.title;
     lbSub.innerHTML   = d.sub;
 
-   if (d.type === 'video') {
-  lbImg.style.display   = 'none';
-  lbVideo.innerHTML     = '<source src="' + d.src + '" type="video/mp4">';
-  lbVideo.style.display = 'block';
-  lbVideo.load();
-  lbVideo.play().catch(function () {});
-}
+    if (d.type === 'video') {
       /* Hide image, show video.
          Use innerHTML + <source> instead of .src so Chrome
          properly reloads the file every time the lightbox opens. */
       lbImg.style.display   = 'none';
-     lbVideo.innerHTML = '<source src="' + d.src + '" type="video/mp4">';
-lbVideo.style.display = 'block';
-lbVideo.load();
-lbVideo.play().catch(function(){});
+      lbVideo.innerHTML     = '<source src="' + d.src + '" type="video/mp4">';
+      lbVideo.style.display = 'block';
+      lbVideo.load();
+      lbVideo.play().catch(function () {});
     } else {
       /* Stop any playing video, show image */
       lbVideo.pause();
