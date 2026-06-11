@@ -333,16 +333,8 @@ if (lightbox) {
   var currentIdx = 0;
 
   /* Create a video element for the lightbox */
-  var lbVideo = document.createElement('video');
-  lbVideo.id = 'gal-lb-video';
-  lbVideo.setAttribute('controls', '');
-  lbVideo.setAttribute('autoplay', '');
-  lbVideo.setAttribute('loop', '');
-  lbVideo.setAttribute('playsinline', '');
-  lbVideo.style.cssText = 'max-width:82vw;max-height:76vh;border-radius:10px;border:1px solid rgba(200,53,42,0.30);box-shadow:0 0 80px rgba(200,53,42,0.15);display:none;cursor:default;';
-  /* Insert video right after the img in the lightbox */
-  lbImg.parentNode.insertBefore(lbVideo, lbImg.nextSibling);
-  lbVideo.addEventListener('click', function(e) { e.stopPropagation(); });
+  var lbVideo = document.getElementById('gal-lb-video');
+lbVideo.addEventListener('click', function(e) { e.stopPropagation(); });
 
   /* Collect all gallery cards */
   var cards = document.querySelectorAll('.gal-card');
