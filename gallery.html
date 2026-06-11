@@ -112,9 +112,10 @@
             <div class="gal-row">
 
               <div class="gal-card"
+                   data-type="image"
+                   data-src="images/photo1.jpg"
                    data-title="My Favourite Moment"
-                   data-sub="Portrait · 2025"
-                   data-img="images/photo1.jpg">
+                   data-sub="Portrait · 2025">
                 <img src="images/photo1.jpg" alt="My Favourite Moment" />
                 <div class="gal-card-caption">
                   <span class="gal-card-title">My Favourite Moment</span>
@@ -124,9 +125,10 @@
               </div>
 
               <div class="gal-card"
+                   data-type="image"
+                   data-src="images/photo2.jpg"
                    data-title="Chilling Out"
-                   data-sub="Lifestyle · 2025"
-                   data-img="images/photo2.jpg">
+                   data-sub="Lifestyle · 2025">
                 <img src="images/photo2.jpg" alt="Chilling Out" />
                 <div class="gal-card-caption">
                   <span class="gal-card-title">Chilling Out</span>
@@ -147,25 +149,16 @@
             <!-- ROW 2 -->
             <div class="gal-row">
 
+              <!-- VIDEO CARD — fixed, no more nesting -->
               <div class="gal-card"
+                   data-type="video"
+                   data-src="images/hangout.mp4"
                    data-title="Good Vibes"
-                   data-sub="Weekend · 2026"
-                   data-img="images/hangout.mp4">
-               <div class="gal-card"
-     data-title="Good Vibes"
-     data-sub="Daily · 2025"
-     data-img="images/hangout.mp4"
-     data-type="video">
-  <video src="images/hangout.mp4"
-         autoplay muted loop playsinline
-         style="width:100%;height:100%;object-fit:cover;display:block;border-radius:0;">
-  </video>
-  <div class="gal-card-caption">
-    <span class="gal-card-title">Good Vibes</span>
-    <span class="gal-card-sub">Daily · 2025</span>
-  </div>
-  <span class="gal-card-num">03</span>
-</div>
+                   data-sub="Daily · 2025">
+                <video autoplay muted loop playsinline
+                       style="width:100%;height:100%;object-fit:cover;display:block;border-radius:0;">
+                  <source src="images/hangout.mp4" type="video/mp4" />
+                </video>
                 <div class="gal-card-caption">
                   <span class="gal-card-title">Good Vibes</span>
                   <span class="gal-card-sub">Daily · 2025</span>
@@ -174,9 +167,10 @@
               </div>
 
               <div class="gal-card"
+                   data-type="image"
+                   data-src="images/photo4.jpg"
                    data-title="Beautiful View"
-                   data-sub="Places · 2025"
-                   data-img="images/photo4.jpg">
+                   data-sub="Places · 2025">
                 <img src="images/photo4.jpg" alt="Beautiful View" />
                 <div class="gal-card-caption">
                   <span class="gal-card-title">Beautiful View</span>
@@ -198,9 +192,10 @@
             <div class="gal-row">
 
               <div class="gal-card"
+                   data-type="image"
+                   data-src="images/photo5.jpg"
                    data-title="My Place"
-                   data-sub="Places · 2025"
-                   data-img="images/photo5.jpg">
+                   data-sub="Places · 2025">
                 <img src="images/photo5.jpg" alt="My Place" />
                 <div class="gal-card-caption">
                   <span class="gal-card-title">My Place</span>
@@ -210,9 +205,10 @@
               </div>
 
               <div class="gal-card"
+                   data-type="image"
+                   data-src="images/photo6.jpg"
                    data-title="Everyday Life"
-                   data-sub="Daily · 2025"
-                   data-img="images/photo6.jpg">
+                   data-sub="Daily · 2025">
                 <img src="images/photo6.jpg" alt="Everyday Life" />
                 <div class="gal-card-caption">
                   <span class="gal-card-title">Everyday Life</span>
@@ -234,9 +230,10 @@
             <div class="gal-row">
 
               <div class="gal-card"
+                   data-type="image"
+                   data-src="images/photo7.jpg"
                    data-title="Squad Goals"
-                   data-sub="Friends · 2025"
-                   data-img="images/photo7.jpg">
+                   data-sub="Friends · 2025">
                 <img src="images/photo7.jpg" alt="Squad Goals" />
                 <div class="gal-card-caption">
                   <span class="gal-card-title">Squad Goals</span>
@@ -246,9 +243,10 @@
               </div>
 
               <div class="gal-card"
+                   data-type="image"
+                   data-src="images/photo8.jpg"
                    data-title="Class Memories"
-                   data-sub="University · 2025"
-                   data-img="images/photo8.jpg">
+                   data-sub="University · 2025">
                 <img src="images/photo8.jpg" alt="Class Memories" />
                 <div class="gal-card-caption">
                   <span class="gal-card-title">Class Memories</span>
@@ -270,9 +268,10 @@
             <div class="gal-row gal-row-center">
 
               <div class="gal-card"
+                   data-type="image"
+                   data-src="images/photo9.jpg"
                    data-title="Good Times"
-                   data-sub="Memories · 2025"
-                   data-img="images/photo9.jpg">
+                   data-sub="Memories · 2025">
                 <img src="images/photo9.jpg" alt="Good Times" />
                 <div class="gal-card-caption">
                   <span class="gal-card-title">Good Times</span>
@@ -330,30 +329,23 @@
   <canvas id="rain-canvas"></canvas>
 
   <!-- LIGHTBOX -->
-<div id="gal-lightbox">
-  <span id="gal-lb-close">&#10005; Close</span>
-  <span class="gal-lb-nav gal-lb-prev" id="gal-lb-prev">&#8592;</span>
-  <span class="gal-lb-nav gal-lb-next" id="gal-lb-next">&#8594;</span>
+  <div id="gal-lightbox">
+    <span id="gal-lb-close">&#10005; Close</span>
+    <span class="gal-lb-nav gal-lb-prev" id="gal-lb-prev">&#8592;</span>
+    <span class="gal-lb-nav gal-lb-next" id="gal-lb-next">&#8594;</span>
 
-  <!-- IMAGE (shown by default) -->
-  <img id="gal-lb-img" src="" alt="Full Photo" />
+    <!-- IMAGE (shown for photos) -->
+    <img id="gal-lb-img" src="" alt="Full Photo" />
 
-  <!-- VIDEO (hidden by default) -->
-  <video id="gal-lb-video"
-         controls autoplay loop playsinline
-         style="display:none; max-width:82vw; max-height:76vh;
-                border-radius:10px;
-                border:1px solid rgba(200,53,42,0.30);
-                box-shadow:0 0 80px rgba(200,53,42,0.15);
-                cursor:default;">
-  </video>
+    <!-- VIDEO (shown for videos, hidden by default) -->
+    <video id="gal-lb-video" controls autoplay loop playsinline></video>
 
-  <div class="gal-lb-caption">
-    <span class="gal-lb-caption-title" id="gal-lb-title"></span>
-    <span class="gal-lb-caption-sub" id="gal-lb-sub"></span>
+    <div class="gal-lb-caption">
+      <span class="gal-lb-caption-title" id="gal-lb-title"></span>
+      <span class="gal-lb-caption-sub" id="gal-lb-sub"></span>
+    </div>
+    <p class="gal-lb-hint">ESC or click backdrop to close &#160;&#183;&#160; &#8592; &#8594; to navigate</p>
   </div>
-  <p class="gal-lb-hint">ESC or click backdrop to close &#160;&#183;&#160; &#8592; &#8594; to navigate</p>
-</div>
 
   <script type="text/javascript" src="js/script.js"></script>
 
