@@ -144,6 +144,7 @@ body.dark-mode .gal-header-bg {
 }
 
 /* ── Individual card ── */
+/* WITH this: */
 .gal-card {
   position: relative;
   overflow: hidden;
@@ -151,14 +152,14 @@ body.dark-mode .gal-header-bg {
   background: var(--bg);
   border: 1px solid var(--border);
   border-radius: var(--radius-md);
-  flex: 1 1 28%;    /* roughly 3-per-row */
-  min-width: 180px;
-  height: 220px;
+  flex: 1 1 45%;    /* 2-per-row */
+  min-width: 240px;
+  height: 260px;    /* slightly taller looks better at 2-col */
 }
 
-/* Large variant — takes up ~2 columns worth */
+/* Remove the large variant or make it equal */
 .gal-card.gal-card-large {
-  flex: 1 1 45%;
+  flex: 1 1 45%;    /* same as normal — no more stretching */
 }
 
 /* Photo fills the card */
